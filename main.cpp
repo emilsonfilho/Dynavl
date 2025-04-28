@@ -14,9 +14,15 @@
 #include <iostream>
 #include <vector>
 
-#include "Commander/Invoker/CommandInvoker.hpp"
-#include "Utils/Tools/GetValidString.hpp"
 #include "def/SetInfo.hpp"
+#include "def/UserQuestions.hpp"
+
+#include "Commander/Commands/CreateCommand.hpp"
+#include "Commander/Invoker/CommandInvoker.hpp"
+
+#include "Utils/Validation/ValidateOnlyIntegers.hpp"
+
+#include "Utils/Tools/GetValidString.hpp"
 
 using std::vector;
 using std::cout;
@@ -29,6 +35,23 @@ using std::exception;
 int main() {
 	CommandInvoker invoker;
 	vector<SetInfo> sets;
+
+	CreateCommand createCommand("create", "cria um conjunto com ou sem valores");
+
+	invoker.registerCommand(
+		createCommand.getName(), &createCommand, [&sets]() -> CreateCommandContext * {
+			istringstream bufferedData(getValidString(PromptSetNumbers,
+					{[&](const string& data) {
+						ValidateOnlyIntegers(data);
+					}}));
+			
+			int num;
+			queue<int> data;
+			while (bufferedData >> num) data.push(num);
+
+			return new CreateCommandContext(sets, data, "criado por linha de comando");
+		}
+	);
 
 	while (true) {
 		try {
