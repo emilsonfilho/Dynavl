@@ -21,6 +21,7 @@
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
+#include "Utils/Validation/ValidateEmptyRepository.hpp"
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
 
 #include "Utils/Tools/GetValidString.hpp"
@@ -57,6 +58,7 @@ int main() {
 
 	invoker.registerCommand(
 		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
+			ValidateEmptyRepository(sets.size());
 			istringstream bufferedData(getValidString(PromptShowSets,
 					{[&](const string& data) {
 						ValidateOnlyIntegers(data);
