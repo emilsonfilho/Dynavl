@@ -1,8 +1,6 @@
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
 
 void ValidateOnlyIntegers(const std::string& str) {
-	if (str == "") throw InvalidNumberInputException(InvalidNumberInputMessage());
-
 	istringstream iss(str);
 	string token;
 
