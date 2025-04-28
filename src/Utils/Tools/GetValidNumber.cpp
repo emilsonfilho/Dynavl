@@ -11,9 +11,7 @@ int getValidNumber(const string &prompt,
       if (!(cin >> num))
         throw InvalidArgumentException(InvalidArgumentForNumberMessage());
 
-      for (const auto &validate : validations) {
-        validate(num);
-      }
+      validations(num);
 
       break;
     } catch (const exception &e) {

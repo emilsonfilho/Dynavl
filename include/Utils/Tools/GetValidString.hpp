@@ -20,6 +20,6 @@ using std::exception;
  * @return std::string Valid string
  */
 std::string getValidString(const string &prompt,
-                           const StringValidatorArray validations);
+                           const StringValidator validations);
 
 #endif

@@ -45,9 +45,9 @@ int main() {
 	invoker.registerCommand(
 		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
 			istringstream bufferedData(getValidString(PromptSetNumbers,
-					{[&](const string& data) {
+					[&](const string& data) {
 						ValidateOnlyIntegers(data);
-					}}));
+					}));
 			
 			int num;
 			queue<int> data;
@@ -61,11 +61,10 @@ int main() {
 		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
 			ValidateEmptyRepository(sets.size());
 			istringstream bufferedData(getValidString(PromptShowSets,
-					{[&](const string& data) {
+					[&](const string& data) {
 						ValidateOnlyIntegers(data);
-					}, [&](const string& data) {
 						ValidateIndexes(data, sets.size());
-					}}));
+					}));
 			
 			int num;
 			queue<int> data;
