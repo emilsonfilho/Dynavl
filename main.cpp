@@ -23,6 +23,7 @@
 
 #include "Utils/Validation/ValidateEmptyRepository.hpp"
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
+#include "Utils/Validation/ValidateIndexes.hpp"
 
 #include "Utils/Tools/GetValidString.hpp"
 
@@ -62,6 +63,8 @@ int main() {
 			istringstream bufferedData(getValidString(PromptShowSets,
 					{[&](const string& data) {
 						ValidateOnlyIntegers(data);
+					}, [&](const string& data) {
+						ValidateIndexes(data);
 					}}));
 			
 			int num;
