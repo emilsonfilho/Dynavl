@@ -39,7 +39,7 @@ TEST(GetValidNumberTest, ValidNumberWithOneValidator) {
     input.str("42\n");  // Simulate input from the user
     simulateInput(input, "42");
     
-    IntValidatorArray validators = {positiveValidator};
+    IntValidator validators = positiveValidator;
     
     int result = getValidNumber("Enter a positive number: ", validators);
 
@@ -52,7 +52,7 @@ TEST(GetValidNumberTest, InvalidThenValid) {
   stringstream input("-5\n42\n");
   cin.rdbuf(input.rdbuf());
 
-  IntValidatorArray validators = {positiveValidator};
+  IntValidator validators = positiveValidator;
 
   int result = getValidNumber("Enter a positive number: ", validators);
   EXPECT_EQ(result, 42);
@@ -64,7 +64,7 @@ TEST(GetValidNumberTest, ValidNumberWithMultipleValidators) {
     input.str("42\n");  // Simulate input from the user
     simulateInput(input, "42");
 
-    IntValidatorArray validators = {positiveValidator, lessThan100Validator};
+    IntValidator validators = [](int number){ positiveValidator(number); lessThan100Validator(number); };
 
     int result = getValidNumber("Enter a positive number less than 100: ", validators);
 
@@ -77,7 +77,7 @@ TEST(GetValidNumberTest, InvalidNumberWithMultipleValidators) {
     input.str("150\n42\n");  // Simulate invalid input followed by valid one
     simulateInput(input, "150\n42");
 
-    IntValidatorArray validators = {positiveValidator, lessThan100Validator};
+    IntValidator validators = [](int number){ positiveValidator(number); lessThan100Validator(number); };
 
     int result = getValidNumber("Enter a positive number less than 100: ", validators);
     EXPECT_EQ(result, 42);
@@ -89,7 +89,7 @@ TEST(GetValidNumberTest, InputValidationWithMultipleFailures) {
     input.str("-1\n0\n105\n42\n");  // Invalid inputs followed by valid one
     simulateInput(input, "-1\n0\n105\n42");
 
-    IntValidatorArray validators = {positiveValidator, lessThan100Validator};
+    IntValidator validators = [](int number){ positiveValidator(number); lessThan100Validator(number); };
 
     int result = getValidNumber("Enter a positive number less than 100: ", validators);
 

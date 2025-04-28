@@ -37,7 +37,9 @@ TEST(GetValidStringTest, ValidStringWithOneValidator) {
     input.str("Hello World\n");  // Simulate input from the user
     simulateInput(input, "Hello World");
 
-    StringValidatorArray validators = {nonEmptyValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+    };
     
     string result = getValidString("Enter a string: ", validators);
 
@@ -50,7 +52,9 @@ TEST(GetValidStringTest, InvalidStringWithOneValidator) {
     input.str("\nHello World\n");  // Simulate invalid input followed by valid one
     simulateInput(input, "\nHello World");
 
-    StringValidatorArray validators = {nonEmptyValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+    };
     
     string result = getValidString("Enter a non-empty string: ", validators);
 
@@ -63,7 +67,10 @@ TEST(GetValidStringTest, ValidStringWithMultipleValidators) {
     input.str("Hello World\n");  // Simulate input from the user
     simulateInput(input, "Hello World");
 
-    StringValidatorArray validators = {nonEmptyValidator, startsWithCapitalValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+        startsWithCapitalValidator(str);
+    };
 
     string result = getValidString("Enter a valid string: ", validators);
 
@@ -76,7 +83,10 @@ TEST(GetValidStringTest, InvalidStringWithMultipleValidators) {
     input.str("hello world\nHello World\n");  // Simulate invalid input followed by valid one
     simulateInput(input, "hello world\nHello World");
 
-    StringValidatorArray validators = {nonEmptyValidator, startsWithCapitalValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+        startsWithCapitalValidator(str);
+    };
 
     string result = getValidString("Enter a string starting with a capital letter: ", validators);
 
@@ -89,7 +99,10 @@ TEST(GetValidStringTest, InvalidStringWithMultipleValidatorsFailsFirst) {
     input.str("\nhello world\nHello World\n");  // Simulate invalid input followed by valid one
     simulateInput(input, "\nhello world\nHello World");
 
-    StringValidatorArray validators = {nonEmptyValidator, startsWithCapitalValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+        startsWithCapitalValidator(str);
+    };
 
     string result = getValidString("Enter a non-empty string starting with a capital letter: ", validators);
 
@@ -102,7 +115,10 @@ TEST(GetValidStringTest, InputValidationWithMultipleFailures) {
     input.str("\n\nhello\nHello World\n");  // Invalid inputs followed by valid one
     simulateInput(input, "\n\nhello\nHello World");
 
-    StringValidatorArray validators = {nonEmptyValidator, startsWithCapitalValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+        startsWithCapitalValidator(str);
+    };
 
     string result = getValidString("Enter a valid string: ", validators);
 
@@ -115,7 +131,10 @@ TEST(GetValidStringTest, DoesNotEnterInfiniteLoop) {
     input.str("\n\nhello\nHello World\n");  // Invalid inputs followed by valid one
     simulateInput(input, "\n\nhello\nHello World");
 
-    StringValidatorArray validators = {nonEmptyValidator, startsWithCapitalValidator};
+    auto validators = [](const string& str) {
+        nonEmptyValidator(str);
+        startsWithCapitalValidator(str);
+    };
 
     string result = getValidString("Enter a valid string: ", validators);
 
