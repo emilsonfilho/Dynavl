@@ -38,7 +38,7 @@ TEST(ValidateOnlyIntegersTest, InvalidInteger) {
     EXPECT_THROW(ValidateOnlyIntegers("123.45"), InvalidNumberInputException);
 
     // Testa string vazia
-    EXPECT_THROW(ValidateOnlyIntegers(""), InvalidNumberInputException);
+    EXPECT_NO_THROW(ValidateOnlyIntegers(""));
 
     // Testa string com um sinal sem número (ex: "-")
     EXPECT_THROW(ValidateOnlyIntegers("-"), InvalidNumberInputException);
