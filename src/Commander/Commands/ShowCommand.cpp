@@ -11,10 +11,17 @@ void ShowCommand::execute(CommandContext *context) const {
   	const Repository repo = ctx->repository;
   	queue<int> setIndexes = ctx->indexes;
 
+    if (setIndexes.empty())
+      for (size_t i = 0; i < repo.size(); i++)
+        setIndexes.push(i);
+
   	while (!setIndexes.empty()) {
   		int index = setIndexes.front();
 
+      cout << "Conjunto " << index << '\n';
+
   		repo[index].set->show();
+      cout << '\n';
 
   		setIndexes.pop();
   	}

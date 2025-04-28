@@ -1,9 +1,11 @@
 #ifndef SHOW_COMMAND_HPP
 #define SHOW_COMMAND_HPP
 
+#include <iostream>
 #include <string>
 
 using std::string;
+using std::cout;
 
 #include "Commander/Commands/Command.hpp"
 #include "Commander/Contexts/ShowCommandContext.hpp"
