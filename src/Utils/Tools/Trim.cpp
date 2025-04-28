@@ -5,5 +5,9 @@ string trim(const string &str) {
   if (first == string::npos)
     return "";
   size_t last = str.find_last_not_of(" \t\n\r");
-  return str.substr(first, last - first + 1);
+  string s = str.substr(first, last - first + 1);
+
+  // collapses any whitespace sequence into a single space
+  static const regex re("\\s+");
+  return regex_replace(s, re, " ");
 }

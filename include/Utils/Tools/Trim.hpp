@@ -4,8 +4,10 @@
 #include <algorithm>
 #include <cctype>
 #include <string>
+#include <regex>
 
 using std::string;
+using std::regex;
 
 /**
  * @brief Removes whitespace from the beginning and end of a string
