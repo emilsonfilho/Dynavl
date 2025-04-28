@@ -1,7 +1,7 @@
 #include "Utils/Tools/GetValidNumber.hpp"
 
 int getValidNumber(const string &prompt,
-                   const IntValidatorArray validations) {
+                   const IntValidator validations) {
   int num = -1;
 
   while (true) {

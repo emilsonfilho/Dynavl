@@ -1,7 +1,7 @@
 #ifndef GET_VALID_NUMBER_HPP
 #define GET_VALID_NUMBER_HPP
 
-#include "../def/IntValidatorArray.hpp"
+#include "../def/IntValidator.hpp"
 #include "Exceptions/InvalidArgumentException.hpp"
 #include "Messages/InvalidArgumentForNumberMessage.hpp"
 #include "Utils/Tools/IgnoreCin.hpp"
@@ -12,21 +12,21 @@ using std::cin;
 using std::exception;
 
 /**
- * @brief Lê um inteiro válido do usuário
+ * @brief Reads a valid integer from the user
  *
- * Essa função entra em loop infinito a menos que o usuário digite algo válido.
- * Algo é definido como válido no parâmetro qeu recebe uma série de vaidações
- * dadas do programa, tornando-a flexível para vários casos. I.e., sempe sairá
- * daqui um vaor válido. Ademais, essa função só lida com pedido de inteiros. Se
- * preciso for uma função que lê outro valor, outra função deve ser criada.
+ * This function goes into an infinite loop unless the user types something valid.
+ * Something is defined as valid in the parameter that receives a series of validations
+ * given by the program, making it flexible for various cases. I.e., there will always be
+ * a valid value. Furthermore, this function only handles integer requests. If
+ * needed is a function that reads another value, another function must be created.
  *
- * @param prompt A mensagem pegruntando o que se quer do usuário
- * @param validations Uma série de validações que indicarão se a resposta dada é
- * válida
+ * @param prompt The message asking what you want from the user
+ * @param validations A series of validations that will indicate whether the answer given is
+ * valid
  *
- * @throws InvalidArgumentException Se o usuário digitar algo inválido
+ * @throws InvalidArgumentException If the user types something invalid
  */
 int getValidNumber(const string &prompt,
-                   const IntValidatorArray validations);
+                   const IntValidator validations);
 
 #endif
