@@ -8,11 +8,15 @@
 #include "Exceptions/InvalidArgumentException.hpp"
 #include "Messages/InvalidArgumentForNumberMessage.hpp"
 
+using std::stringstream;
+using std::string;
+using std::cin;
+
 // Helper to simulate user input for testing purposes
-static void simulateInput(std::stringstream &ss, const std::string &input) {
+static void simulateInput(stringstream &ss, const string &input) {
     ss.str(input);
     ss.clear();
-    std::cin.rdbuf(ss.rdbuf());
+    cin.rdbuf(ss.rdbuf());
 }
 
 // A simple validator that ensures the number is positive
@@ -31,7 +35,7 @@ void lessThan100Validator(int number) {
 
 TEST(GetValidNumberTest, ValidNumberWithOneValidator) {
     // Test for valid positive number input
-    std::stringstream input;
+    stringstream input;
     input.str("42\n");  // Simulate input from the user
     simulateInput(input, "42");
     
@@ -45,8 +49,8 @@ TEST(GetValidNumberTest, ValidNumberWithOneValidator) {
 
 TEST(GetValidNumberTest, InvalidThenValid) {
   // Simula: primeiro -5 (inválido), depois 42 (válido)
-  std::stringstream input("-5\n42\n");
-  std::cin.rdbuf(input.rdbuf());
+  stringstream input("-5\n42\n");
+  cin.rdbuf(input.rdbuf());
 
   IntValidatorArray validators = {positiveValidator};
 
@@ -56,7 +60,7 @@ TEST(GetValidNumberTest, InvalidThenValid) {
 
 TEST(GetValidNumberTest, ValidNumberWithMultipleValidators) {
     // Test for valid number that satisfies multiple validators
-    std::stringstream input;
+    stringstream input;
     input.str("42\n");  // Simulate input from the user
     simulateInput(input, "42");
 
@@ -69,7 +73,7 @@ TEST(GetValidNumberTest, ValidNumberWithMultipleValidators) {
 
 TEST(GetValidNumberTest, InvalidNumberWithMultipleValidators) {
     // Test for invalid number that fails the "less than 100" validator
-    std::stringstream input;
+    stringstream input;
     input.str("150\n42\n");  // Simulate invalid input followed by valid one
     simulateInput(input, "150\n42");
 
@@ -81,7 +85,7 @@ TEST(GetValidNumberTest, InvalidNumberWithMultipleValidators) {
 
 TEST(GetValidNumberTest, InputValidationWithMultipleFailures) {
     // Test when multiple invalid inputs are provided
-    std::stringstream input;
+    stringstream input;
     input.str("-1\n0\n105\n42\n");  // Invalid inputs followed by valid one
     simulateInput(input, "-1\n0\n105\n42");
 
