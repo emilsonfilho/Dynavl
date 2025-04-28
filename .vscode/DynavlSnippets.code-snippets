@@ -161,5 +161,20 @@
             "#endif"
         ],
         "description": "newcmdhpp"
-    }
+    },
+    "Create Command and Register": {
+        "prefix": "registercmd",
+        "body": [
+            "${1:}Command ${2:}Command(\"${3:}\", ${4:});",
+            "",
+            "invoker.registerCommand(",
+            "    ${2:}Command.getName(), &${2:}Command, [&sets]() -> CommandContext * {",
+            "        // ...",
+            "",
+            "        return new ${1:}CommandContext(sets);",
+            "    }",
+            ");"
+        ],
+        "description": "Create a command and register it with the invoker"
+        }
 }

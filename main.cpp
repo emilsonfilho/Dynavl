@@ -19,13 +19,16 @@
 
 #include "Commander/Commands/CreateCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
+#include "Commander/Commands/ContainsCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateEmptyRepository.hpp"
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
 #include "Utils/Validation/ValidateIndexes.hpp"
+#include "Utils/Validation/ValidateIndex.hpp"
 
 #include "Utils/Tools/GetValidString.hpp"
+#include "Utils/Tools/GetValidNumber.hpp"
 
 using std::vector;
 using std::cout;
@@ -41,7 +44,9 @@ int main() {
 
 	CreateCommand createCommand("create", "cria um conjunto com ou sem valores");
 	ShowCommand showCommand("show", "mostra os conjuntos do sistema");
-
+	ContainsCommand containsCommand("contains", "verifica se um conjunto do sistema possui um valor especificado");
+	
+	
 	invoker.registerCommand(
 		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
 			istringstream bufferedData(getValidString(PromptSetNumbers,
@@ -71,6 +76,22 @@ int main() {
 			while (bufferedData >> num) data.push(num);
 
 			return new ShowCommandContext(sets, data);
+		}
+	);
+
+	invoker.registerCommand(
+		containsCommand.getName(), &containsCommand, [&sets]() -> CommandContext * {
+            ValidateEmptyRepository(sets.size());
+
+			int index = getValidNumber(PromptIndexSet,
+			    [&](int data) {
+					ValidateIndex(data, sets.size());
+				}
+			);
+
+			int value = getValidNumber(PrompRequestFetchValue, [](const int data){});
+	
+			return new ContainsCommandContext(sets, index, value);
 		}
 	);
 
