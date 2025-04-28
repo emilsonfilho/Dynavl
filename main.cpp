@@ -18,6 +18,7 @@
 #include "def/UserQuestions.hpp"
 
 #include "Commander/Commands/CreateCommand.hpp"
+#include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
@@ -37,9 +38,10 @@ int main() {
 	vector<SetInfo> sets;
 
 	CreateCommand createCommand("create", "cria um conjunto com ou sem valores");
+	ShowCommand showCommand("show", "mostra os conjuntos do sistema");
 
 	invoker.registerCommand(
-		createCommand.getName(), &createCommand, [&sets]() -> CreateCommandContext * {
+		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
 			istringstream bufferedData(getValidString(PromptSetNumbers,
 					{[&](const string& data) {
 						ValidateOnlyIntegers(data);
@@ -50,6 +52,21 @@ int main() {
 			while (bufferedData >> num) data.push(num);
 
 			return new CreateCommandContext(sets, data, "criado por linha de comando");
+		}
+	);
+
+	invoker.registerCommand(
+		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
+			istringstream bufferedData(getValidString(PromptSetNumbers,
+					{[&](const string& data) {
+						ValidateOnlyIntegers(data);
+					}}));
+			
+			int num;
+			queue<int> data;
+			while (bufferedData >> num) data.push(num);
+
+			return new ShowCommandContext(sets, data);
 		}
 	);
 
