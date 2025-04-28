@@ -1,16 +1,20 @@
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
 
-void ValidateOnlyIntegers(const string& str) {
+void ValidateOnlyIntegers(const std::string& str) {
+	if (str == "") throw InvalidNumberInputException(InvalidNumberInputMessage());
+
 	istringstream iss(str);
 	string token;
 
 	while (iss >> token) {
-		try {
-			stoi(token);
-		} catch (const exception& e) {
-			throw InvalidNumberInputException(InvalidNumberInputMessage());
+		for (size_t i = 0; i < token.size(); i++){
+			if (i == 0 and token[i] == '-' and token.size() > 1)
+                continue;
+            if (!isdigit(token[i])) 
+                throw InvalidNumberInputException(InvalidNumberInputMessage());
 		}
 	}
 
-	if (!iss.eof()) throw InvalidNumberInputException(InvalidNumberInputMessage());
+	if (!iss.eof())
+        throw InvalidNumberInputException(InvalidNumberInputMessage());
 }
