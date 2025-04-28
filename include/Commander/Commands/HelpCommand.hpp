@@ -8,6 +8,7 @@
 #include "Commander/Commands/Command.hpp"
 
 using std::string;
+using std::ostringstream;
 
 class HelpCommand : public Command {
 private:

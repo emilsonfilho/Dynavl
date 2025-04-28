@@ -1,12 +1,11 @@
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
 
-#include <string>
+#include <iostream>
 
 #include "Commander/Contexts/CommandContext.hpp"
 
 using std::string;
-using std::ostringstream;
 using std::cout;
 
 class Command {
