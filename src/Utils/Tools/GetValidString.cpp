@@ -1,7 +1,7 @@
 #include "Utils/Tools/GetValidString.hpp"
 
 string getValidString(const string &prompt,
-                           const StringValidatorArray validations) {
+                           const StringValidator validations) {
   string str;
 
   while (true) {
@@ -10,9 +10,7 @@ string getValidString(const string &prompt,
       getline(cin, str);
       str = trim(str);
 
-      for (const auto &validate : validations) {
-        validate(str);
-      }
+      validations(str);
 
       break;
     } catch (const exception &e) {

@@ -4,6 +4,6 @@
 #include <functional>
 #include <vector>
 
-using IntValidatorArray = std::vector<std::function<void(int)>>;
+using IntValidatorArray = std::function<void(int)>;
 
 #endif

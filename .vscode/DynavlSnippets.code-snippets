@@ -1,0 +1,165 @@
+{
+    "msg-hpp": {
+        "prefix": "msg-hpp",
+        "body": [
+            "",
+            "#ifndef ${1:}_MESSAGE_HPP",
+            "#define ${1:}_MESSAGE_HPP",
+            "",
+            "#include <string>",
+            "",
+            "using std::string;",
+            "",
+            "/**",
+            " * @brief ${3:}",
+            " */",
+            "string ${2:}Message();",
+            "",
+            "#endif"
+        ],
+        "description": "msg-hpp"
+    },
+    "msg-cpp": {
+        "prefix": "msg-cpp",
+        "body": [
+            "",
+            "#include \"Messages/${1:}Message.hpp\"",
+            "",
+            "string ${1:}Message() {",
+            "  return \"${2:}\";",
+            "}"
+        ],
+        "description": "msg-cpp"
+    },
+    "excp-hpp": {
+        "prefix": "excp-hpp",
+        "body": [
+            "",
+            "#ifndef ${1:}_EXCEPTION_HPP",
+            "#define ${1:}_EXCEPTION_HPP",
+            "",
+            "#include <stdexcept>",
+            "",
+            "using std::string;",
+            "using std::${3:runtime_error};",
+            "",
+            "class ${2:}Exception : public ${3:runtime_error} {",
+            "public:",
+            "  /**",
+            "   * @brief Creates an invalid argument exception",
+            "   *",
+            "   * @param message Message to be displayed",
+            "   */",
+            "  explicit ${2:}Exception(const string &message);",
+            "};",
+            "",
+            "#endif"
+        ],
+        "description": "excp-hpp"
+    },
+    "excp-cpp": {
+        "prefix": "excp-cpp",
+        "body": [
+            "",
+            "#include \"Exceptions/${1:}Exception.hpp\"",
+            "",
+            "${1:}Exception::${1:}Exception(const string &message)",
+            "    : ${2:runtime_error}(message) {}"
+        ],
+        "description": "excp-cpp"
+    },
+    "newctxhpp": {
+        "prefix": "newctxhpp",
+        "body": [
+            "",
+            "#ifndef ${1:}_COMMAND_CONTEXT_HPP",
+            "#define ${1:}_COMMAND_CONTEXT_HPP",
+            "",
+            "#include \"../def/Repository.hpp\"",
+            "#include \"Commander/Contexts/CommandContext.hpp\"",
+            "",
+            "using std::string;",
+            "",
+            "class ${2:}CommandContext : public CommandContext {",
+            "public:",
+            "  // ...",
+            "  Repository repository;",
+            "",
+            "  /**",
+            "   * @brief Context builder to ${3:}",
+            "   *",
+            "   * @param repository DI for data from the running system",
+            "   */",
+            "  ${2:}CommandContext(const Repository repository);",
+            "};",
+            "",
+            "#endif"
+        ],
+        "description": "newctxhpp"
+    },
+    "newctxcpp": {
+        "prefix": "newctxcpp",
+        "body": [
+            "",
+            "#include \"Commander/Contexts/${1:}CommandContext.hpp\"",
+            "",
+            "${1:}CommandContext::${1:}CommandContext(const Repository repository)",
+            "\t: repository(repository) {}"
+        ],
+        "description": "newctxcpp"
+    },
+    "newcmdcpp": {
+        "prefix": "newcmdcpp",
+        "body": [
+            "",
+            "#include \"Commander/Commands/${1:}Command.hpp\"",
+            "",
+            "${1:}Command::${1:}Command(const string &name,",
+            "                                     const string &description)",
+            "    : Command(name, description) {}",
+            "",
+            "void ${1:}Command::execute(CommandContext *context) const {",
+            "  auto *ctx = dynamic_cast<${1:}CommandContext *>(context);",
+            "",
+            "  if (ctx) {",
+            "    cout << \"\" << \\n';",
+            "  }",
+            "}"
+        ],
+        "description": "newcmdcpp"
+    },
+    "newcmdhpp": {
+        "prefix": "newcmdhpp",
+        "body": [
+            "",
+            "#ifndef ${1:}_COMMAND_HPP",
+            "#define ${1:}_COMMAND_HPP",
+            "",
+            "#include <string>",
+            "",
+            "using std::string;",
+            "using std::cout;",
+            "",
+            "#include \"Commander/Commands/Command.hpp\"",
+            "#include \"Commander/Contexts/${2:}CommandContext.hpp\"",
+            "",
+            "class ${2:}Command : public Command {",
+            "public:",
+            "\t/*",
+            "\t * @brief ${2:}Command constructor",
+            "\t */",
+            "\t${2:}Command(const string& name, const string& description);",
+            "",
+            "\t/*",
+            "\t * @brief ${2:}Command execution function",
+            "\t * ",
+            "\t * @param context Command context",
+            "\t */",
+            "\tvoid execute(CommandContext *context) const override;",
+            "};",
+            "",
+            "#endif"
+        ],
+        "description": "newcmdhpp"
+    }
+}
