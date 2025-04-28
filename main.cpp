@@ -57,7 +57,7 @@ int main() {
 
 	invoker.registerCommand(
 		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
-			istringstream bufferedData(getValidString(PromptSetNumbers,
+			istringstream bufferedData(getValidString(PromptShowSets,
 					{[&](const string& data) {
 						ValidateOnlyIntegers(data);
 					}}));
