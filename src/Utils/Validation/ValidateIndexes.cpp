@@ -7,5 +7,5 @@ void ValidateIndexes(const string& data, size_t repositorySize) {
 
 	while (iss >> num) 
 		if (num < 0 or num >= repositorySize)
-			throw InvalidArgumentException(InvalidIndexStringMessage());
+			throw InvalidIndexStringException(InvalidIndexStringMessage());
 }

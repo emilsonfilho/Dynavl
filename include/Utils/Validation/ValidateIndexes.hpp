@@ -1,7 +1,7 @@
 #ifndef VALIDATE_INDEXES
 #define VALIDATE_INDEXES 
 
-#include "Exceptions/InvalidArgumentException.hpp"
+#include "Exceptions/InvalidIndexStringException.hpp"
 #include "Messages/InvalidIndexStringMessage.hpp"
 
 #include <string>
