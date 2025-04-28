@@ -64,7 +64,7 @@ int main() {
 					{[&](const string& data) {
 						ValidateOnlyIntegers(data);
 					}, [&](const string& data) {
-						ValidateIndexes(data);
+						ValidateIndexes(data, sets.size());
 					}}));
 			
 			int num;
