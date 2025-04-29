@@ -20,6 +20,7 @@
 #include "Commander/Commands/CreateCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/ContainsCommand.hpp"
+#include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateEmptyRepository.hpp"
@@ -45,7 +46,7 @@ int main() {
 	CreateCommand createCommand("create", "cria um conjunto com ou sem valores");
 	ShowCommand showCommand("show", "mostra os conjuntos do sistema");
 	ContainsCommand containsCommand("contains", "verifica se um conjunto do sistema possui um valor especificado");
-	
+	EmptyCommand emptyCommand("empty", "verifica se um conjunto do sistema esta vazio");
 	
 	invoker.registerCommand(
 		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -92,6 +93,20 @@ int main() {
 			int value = getValidNumber(PrompRequestFetchValue, [](const int data){});
 	
 			return new ContainsCommandContext(sets, index, value);
+		}
+	);
+
+	invoker.registerCommand(
+		emptyCommand.getName(), &emptyCommand, [&sets]() -> CommandContext * {
+			ValidateEmptyRepository(sets.size());
+
+			int index = getValidNumber(PromptIndexSet,
+				[&](int data) {
+					ValidateIndex(data, sets.size());
+				}
+			);
+
+			return new EmptyCommandContext(sets, index);
 		}
 	);
 
