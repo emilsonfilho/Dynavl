@@ -23,17 +23,13 @@
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
-#include "Utils/Validation/ValidateEmptyRepository.hpp"
+#include "Utils/Validation/ValidateRepositoryNotEmpty.hpp"
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
-#include "Utils/Validation/ValidateIndexes.hpp"
-#include "Utils/Validation/ValidateIndex.hpp"
 
 #include "Utils/Tools/GetValidString.hpp"
-#include "Utils/Tools/GetValidNumber.hpp"
+#include "Utils/IO/PromptValidIndex.hpp"
+#include "Utils/IO/PromptMultipleIndexes.hpp"
 
-using std::vector;
-using std::cout;
-using std::string;
 using std::getline;
 using std::cin;
 using std::exception;
@@ -65,16 +61,9 @@ int main() {
 
 	invoker.registerCommand(
 		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
-			ValidateEmptyRepository(sets.size());
-			istringstream bufferedData(getValidString(PromptShowSets,
-					[&](const string& data) {
-						ValidateOnlyIntegers(data);
-						ValidateIndexes(data, sets.size());
-					}));
-			
-			int num;
-			queue<int> data;
-			while (bufferedData >> num) data.push(num);
+			ValidateRepositoryNotEmpty(sets);
+
+			queue<int> data = promptMultipleIndexes(sets, PromptShowSets);
 
 			return new ShowCommandContext(sets, data);
 		}
@@ -82,14 +71,9 @@ int main() {
 
 	invoker.registerCommand(
 		containsCommand.getName(), &containsCommand, [&sets]() -> CommandContext * {
-            ValidateEmptyRepository(sets.size());
+            ValidateRepositoryNotEmpty(sets);
 
-			int index = getValidNumber(PromptIndexSet,
-			    [&](int data) {
-					ValidateIndex(data, sets.size());
-				}
-			);
-
+			int index = promptValidIndex(sets, PromptIndexSet);
 			int value = getValidNumber(PrompRequestFetchValue, [](const int data){});
 	
 			return new ContainsCommandContext(sets, index, value);
@@ -98,13 +82,9 @@ int main() {
 
 	invoker.registerCommand(
 		emptyCommand.getName(), &emptyCommand, [&sets]() -> CommandContext * {
-			ValidateEmptyRepository(sets.size());
+			ValidateRepositoryNotEmpty(sets);
 
-			int index = getValidNumber(PromptIndexSet,
-				[&](int data) {
-					ValidateIndex(data, sets.size());
-				}
-			);
+			int index = promptValidIndex(sets, PromptIndexSet);
 
 			return new EmptyCommandContext(sets, index);
 		}
