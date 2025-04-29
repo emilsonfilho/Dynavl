@@ -2,6 +2,7 @@
 #define SET_HPP
 
 #include <algorithm>
+#include <iostream>
 
 #include "Node/Node.hpp"
 
@@ -115,6 +116,18 @@ private:
 	 * @return bool `true` if the key is found, `false` otherwise.
 	 */
 	bool contains(int key, Node* node) const;
+
+	/**
+	 * @brief Displays the tree structure in a formatted way.
+	 *
+	 * This function recursively prints the tree sideways, showing the hierarchy
+	 * of nodes using special characters to represent branches and levels.
+	 * It helps visualize the structure of the tree for debugging or educational purposes.
+	 *
+	 * @param node Pointer to the current node being displayed.
+	 * @param inheritance A string tracking the path taken to reach the current node, used to format the output.
+	 */
+	void show(Node* node, string inheritance) const;
 public:
 
 	/**
@@ -191,6 +204,14 @@ public:
 	 * then sets the root pointer to `nullptr` to ensure no dangling references remain.
 	 */
 	~Set();
+
+	/**
+	 * @brief Displays the entire tree structure starting from the root.
+	 *
+	 * This function is a wrapper that initiates the recursive `show` function,
+	 * printing a formatted view of the entire tree for visualization.
+	 */
+	void show() const;
 
 #ifdef TEST_MODE
 	// Retorna a raiz da árvore (para fins de teste)

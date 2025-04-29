@@ -1,11 +1,128 @@
+/**
+ * Autor: Francisco Emilson Santos Souza Filho - Matrícula 565685
+ * Data Inicial: 26/04/2025
+ * 
+ * Entrega da Avaliação Continuada 02
+ * 
+ * Disciplina: Estrutura de Dados Avançada
+ * Professor: Atílio Gomes
+ * 
+ * Bachalerenado em Ciência da Computação
+ * Universidade Federal do Ceará (UFC) - Campus Quixadá
+ */
+
 #include <iostream>
+#include <vector>
 
-#include "Node/Node.hpp"
+#include "def/SetInfo.hpp"
+#include "def/UserQuestions.hpp"
 
-using namespace std;
+#include "Commander/Commands/CreateCommand.hpp"
+#include "Commander/Commands/ShowCommand.hpp"
+#include "Commander/Commands/ContainsCommand.hpp"
+#include "Commander/Invoker/CommandInvoker.hpp"
+
+#include "Utils/Validation/ValidateEmptyRepository.hpp"
+#include "Utils/Validation/ValidateOnlyIntegers.hpp"
+#include "Utils/Validation/ValidateIndexes.hpp"
+#include "Utils/Validation/ValidateIndex.hpp"
+
+#include "Utils/Tools/GetValidString.hpp"
+#include "Utils/Tools/GetValidNumber.hpp"
+
+using std::vector;
+using std::cout;
+using std::string;
+using std::getline;
+using std::cin;
+using std::exception;
+// using std::endl;
 
 int main() {
-	Node n(10, 1);
+	CommandInvoker invoker;
+	vector<SetInfo> sets;
 
-	cout << n.key << endl;
+	CreateCommand createCommand("create", "cria um conjunto com ou sem valores");
+	ShowCommand showCommand("show", "mostra os conjuntos do sistema");
+	ContainsCommand containsCommand("contains", "verifica se um conjunto do sistema possui um valor especificado");
+	
+	
+	invoker.registerCommand(
+		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
+			istringstream bufferedData(getValidString(PromptSetNumbers,
+					[&](const string& data) {
+						ValidateOnlyIntegers(data);
+					}));
+			
+			int num;
+			queue<int> data;
+			while (bufferedData >> num) data.push(num);
+
+			return new CreateCommandContext(sets, data, "criado por linha de comando");
+		}
+	);
+
+	invoker.registerCommand(
+		showCommand.getName(), &showCommand, [&sets]() -> CommandContext * {
+			ValidateEmptyRepository(sets.size());
+			istringstream bufferedData(getValidString(PromptShowSets,
+					[&](const string& data) {
+						ValidateOnlyIntegers(data);
+						ValidateIndexes(data, sets.size());
+					}));
+			
+			int num;
+			queue<int> data;
+			while (bufferedData >> num) data.push(num);
+
+			return new ShowCommandContext(sets, data);
+		}
+	);
+
+	invoker.registerCommand(
+		containsCommand.getName(), &containsCommand, [&sets]() -> CommandContext * {
+            ValidateEmptyRepository(sets.size());
+
+			int index = getValidNumber(PromptIndexSet,
+			    [&](int data) {
+					ValidateIndex(data, sets.size());
+				}
+			);
+
+			int value = getValidNumber(PrompRequestFetchValue, [](const int data){});
+	
+			return new ContainsCommandContext(sets, index, value);
+		}
+	);
+
+	while (true) {
+		try {
+			string input;
+			cout << "$";
+			getline(cin, input);
+			input = trim(input);
+
+			if (input == "help") {
+				cout << "help - exibe uma lista dos comandos disponiveis\n";
+				invoker.showHelp();
+				cout << "exit - fecha a aplicacao\n";
+			} else if (input == "exit") {
+				for (SetInfo &setInfo : sets) {
+					delete setInfo.set;
+				}
+
+				sets.clear();
+
+				break;
+			} else {
+				invoker.executeCommand(input);
+			}
+		} catch (const exception &e) {
+			cout << e.what() << '\n';
+		}
+	}
+
+	cout << "Ate mais!\n";
+
+	return 0;
 }

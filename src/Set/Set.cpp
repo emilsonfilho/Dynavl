@@ -95,13 +95,29 @@ void Set::clear(Node* node) {
 	}
 }
 
-	bool Set::contains(int key, Node* node) const {
-		if (!node) return false;
-		if (node->key == key) return true;
+bool Set::contains(int key, Node* node) const {
+	if (!node) return false;
+	if (node->key == key) return true;
 
-		if (key < node->key) return contains(key, node->left);
-		else return contains(key, node->right);
-	}
+	if (key < node->key) return contains(key, node->left);
+	else return contains(key, node->right);
+}
+
+void Set::show(Node* node, string inheritance) const {
+    if(node != nullptr && (node->left != nullptr || node->right != nullptr))
+        show(node->right , inheritance + "r");
+    for(int i = 0; i < (int) inheritance.size() - 1; i++)
+        cout << (inheritance[i] != inheritance[i + 1] ? "│   " : "    ");
+    if(inheritance != "")
+        cout << (inheritance.back() == 'r' ? "┌───" : "└───");
+    if(node == nullptr){
+        cout << "#" << endl;
+        return;
+    }
+    cout << node->key << endl;
+    if(node != nullptr && (node->left != nullptr || node->right != nullptr))
+    	show(node->left, inheritance + "l");
+}
 
 /**
  * Public Functions
@@ -137,6 +153,8 @@ void Set::swap(Set& t) {
 bool Set::empty() const { return _size == 0 and !root; }
 
 int Set::size() const { return _size; }
+
+void Set::show() const { show(root, ""); }
 
 #ifdef TEST_MODE
 	Node* Set::getRoot() const { return root; }
