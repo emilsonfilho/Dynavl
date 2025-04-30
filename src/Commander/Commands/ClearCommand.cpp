@@ -13,6 +13,6 @@ void ClearCommand::execute(CommandContext *context) const {
 
   	repo[index].set->clear();
 
-    cout << "O conjunto " << index << " foi limpo com suceso." << '\n';
+    cout << "O conjunto " << index << " foi limpo com sucesso." << '\n';
   }
 }
