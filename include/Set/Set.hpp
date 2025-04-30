@@ -198,10 +198,10 @@ public:
 	bool empty() const;
 
 	/**
-	 * @brief Destructor that clears the entire tree and frees the allocated memory.
+	 * @brief Destructor for the Set class.
 	 *
-	 * This function calls the `clear` method to recursively delete all nodes in the tree,
-	 * then sets the root pointer to `nullptr` to ensure no dangling references remain.
+	 * This destructor ensures that all dynamically allocated nodes in the tree
+	 * are properly deleted by calling the `clear` function.
 	 */
 	~Set();
 
@@ -212,6 +212,14 @@ public:
 	 * printing a formatted view of the entire tree for visualization.
 	 */
 	void show() const;
+
+	/**
+	 * @brief Clears all nodes from the tree.
+	 *
+	 * This function deletes all nodes in the tree by calling the recursive `clear`
+	 * function starting from the root, and then sets the root to `nullptr`.
+	 */
+	void clear();
 
 #ifdef TEST_MODE
 	// Retorna a raiz da árvore (para fins de teste)

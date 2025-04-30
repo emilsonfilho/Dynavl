@@ -23,6 +23,7 @@
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
+#include "Commander/Commands/ClearCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateRepositoryNotEmpty.hpp"
@@ -47,6 +48,7 @@ int main() {
 	EmptyCommand emptyCommand("empty", "verifica se um conjunto do sistema esta vazio");
 	SizeCommand sizeCommand("size", "extrai o tamanho de um conjunto do sistema");
 	InsertCommand insertCommand("insert", "insere um valor em um conjunto do sistema");
+	ClearCommand clearCommand("clear", "remove todos os valores de um conjunto do sistema");
 	
 	invoker.registerCommand(
 		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -112,6 +114,16 @@ int main() {
 			int value = getValidNumber(PromptInsertNumber, [](const int data){});
 
 			return new InsertCommandContext(sets, index, value);
+		}
+	);
+
+	invoker.registerCommand(
+		clearCommand.getName(), &clearCommand, [&sets]() -> CommandContext * {
+			ValidateRepositoryNotEmpty(sets);
+
+			int index = promptValidIndex(sets, PromptIndexSet);
+
+			return new ClearCommandContext(sets, index);
 		}
 	);
 

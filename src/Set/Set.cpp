@@ -126,8 +126,7 @@ void Set::show(Node* node, string inheritance) const {
 Set::Set(): root(nullptr), _size(0) {}
 
 Set::~Set() {
-	clear(root);
-	root = nullptr;
+	clear();
 }
 
 void Set::insert(int key) {
@@ -155,6 +154,11 @@ bool Set::empty() const { return _size == 0 and !root; }
 int Set::size() const { return _size; }
 
 void Set::show() const { show(root, ""); }
+
+void Set::clear() {
+	clear(root);
+	root = nullptr;
+}
 
 #ifdef TEST_MODE
 	Node* Set::getRoot() const { return root; }
