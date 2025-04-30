@@ -11,6 +11,6 @@ void SizeCommand::execute(CommandContext *context) const {
   	const Repository repo = ctx->repository;
   	int index = ctx->index;
 
-    cout << "O tamanho do conjunto " << index << " eh " << ctx->repository[index].set->size() << '\n';
+    cout << "O tamanho do conjunto " << index << " eh " << repo[index].set->size() << '\n';
   }
 }
