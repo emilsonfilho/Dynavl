@@ -9,7 +9,7 @@ void ContainsCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<ContainsCommandContext *>(context);
 
   if (ctx) {
-    int index = ctx->setIndex, key = ctx->key;
+    int index = ctx->index, key = ctx->key;
 
     cout << "O conjunto " << index << (ctx->repository[index].set->contains(key) ? " " : " nao ") << "contem o valor " << key << '\n';
   }
