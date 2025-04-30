@@ -2,15 +2,12 @@
 #define EMPTY_COMMAND_CONTEXT_HPP
 
 #include "../def/Repository.hpp"
-#include "Commander/Contexts/CommandContext.hpp"
+#include "Commander/Contexts/IndexedCommandContext.hpp"
 
 using std::string;
 
-class EmptyCommandContext : public CommandContext {
+class EmptyCommandContext : public IndexedCommandContext {
 public:
-  Repository repository;
-  int index;
-
   /**
    * @brief Context builder to empty command
    *
