@@ -170,6 +170,18 @@ private:
    */
   Node *getMin(Node *node) const;
 
+  /**
+   * @brief Finds the node with the maximum key in the subtree.
+   *
+   * This function traverses the right children of the subtree rooted at `node`
+   * until it reaches the rightmost node, which contains the largest key.
+   *
+   * @param node Pointer to the root of the subtree to search.
+   * @return Node* Pointer to the node with the maximum key, or `nullptr` if the
+   * subtree is empty.
+   */
+  Node *getMax(Node *node) const;
+
 public:
   /**
    * @brief Set builder
@@ -286,6 +298,18 @@ public:
    * @throws EmptySetException If the set is empty.
    */
   int minimum() const;
+
+  /**
+   * @brief Returns the largest key in the set.
+   *
+   * This function checks if the set is empty and throws an `EmptySetException`
+   * if it is. Otherwise, it finds the rightmost node in the tree (which holds
+   * the maximum key) and returns its key.
+   *
+   * @return int The maximum key in the set.
+   * @throws EmptySetException if the set is empty.
+   */
+  int maximum() const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;

@@ -159,6 +159,16 @@ Node *Set::getMin(Node *node) const {
   return getMin(node->left);
 }
 
+Node *Set::getMax(Node *node) const {
+  if (!node)
+    return nullptr;
+
+  if (!node->right)
+    return node;
+
+  return getMax(node->right);
+}
+
 /**
  * Public Functions
  */
@@ -203,6 +213,13 @@ int Set::minimum() const {
     throw EmptySetException(EmptySetMessage());
 
   return getMin(root)->key;
+}
+
+int Set::maximum() const {
+  if (empty())
+    throw EmptySetException(EmptySetMessage());
+
+  return getMax(root)->key;
 }
 
 #ifdef TEST_MODE
