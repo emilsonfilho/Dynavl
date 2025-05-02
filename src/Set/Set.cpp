@@ -151,7 +151,7 @@ Node *Set::erase(int key, Node *node) {
   return node;
 }
 
-Node *Set::getMin(Node *node) {
+Node *Set::getMin(Node *node) const {
   if (!node)
     return nullptr;
   if (!node->left)
@@ -197,6 +197,13 @@ void Set::clear() {
 }
 
 void Set::erase(int key) { root = erase(key, root); }
+
+int Set::minimum() const {
+  if (empty())
+    throw EmptySetException(EmptySetMessage());
+
+  return getMin(root)->key;
+}
 
 #ifdef TEST_MODE
 Node *Set::getRoot() const { return root; }

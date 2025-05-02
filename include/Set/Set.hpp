@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "Exceptions/EmptySetException.hpp"
+#include "Messages/EmptySetMessage.hpp"
 #include "Node/Node.hpp"
 
 using namespace std;
@@ -166,7 +168,7 @@ private:
    * @return Node* Pointer to the node with the minimum key, or `nullptr` if the
    * subtree is empty.
    */
-  Node *getMin(Node *node);
+  Node *getMin(Node *node) const;
 
 public:
   /**
@@ -274,6 +276,16 @@ public:
    */
   void erase(int key);
 
+  /**
+   * @brief Returns the smallest key in the set.
+   *
+   * This function finds the leftmost node in the tree (which holds the minimum
+   * key) and returns its key.
+   *
+   * @return int The minimum key in the set.
+   * @throws EmptySetException If the set is empty.
+   */
+  int minimum() const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;
