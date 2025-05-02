@@ -10,5 +10,7 @@ const string PromptShowSets = "Insira o(s) índice(s) dos conjuntos que você qu
 const string PromptIndexSet = "Digite o índice do conjunto: ";
 const string PrompRequestFetchValue = "O que você gostaria de encontrar? Digite aqui: ";
 const string PromptInsertNumber = "Insira o número que você quer adicionar: ";
+const string PromptIndexFirstSet = "Insira o indice do primeiro conjunto: ";
+const string PromptIndexSecondSet = "Insira o indice do segundo conjunto: ";
 
 #endif

@@ -24,6 +24,7 @@
 #include "Commander/Commands/SizeCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
 #include "Commander/Commands/ClearCommand.hpp"
+#include "Commander/Commands/SwapCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateRepositoryNotEmpty.hpp"
@@ -49,6 +50,7 @@ int main() {
 	SizeCommand sizeCommand("size", "extrai o tamanho de um conjunto do sistema");
 	InsertCommand insertCommand("insert", "insere um valor em um conjunto do sistema");
 	ClearCommand clearCommand("clear", "remove todos os valores de um conjunto do sistema");
+	SwapCommand swapCommand("swap", "troca dois conjuntos no sistema");
 	
 	invoker.registerCommand(
 		createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -124,6 +126,17 @@ int main() {
 			int index = promptValidIndex(sets, PromptIndexSet);
 
 			return new ClearCommandContext(sets, index);
+		}
+	);
+
+	invoker.registerCommand(
+		swapCommand.getName(), &swapCommand, [&sets]() -> CommandContext * {
+			ValidateRepositoryNotEmpty(sets);
+
+			int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+			    index2 = promptValidIndex(sets, PromptIndexSecondSet);
+
+			return new SwapCommandContext(sets, index1, index2);
 		}
 	);
 
