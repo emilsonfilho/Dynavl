@@ -156,6 +156,18 @@ private:
    */
   Node *erase(int key, Node *node);
 
+  /**
+   * @brief Finds the node with the minimum key in the subtree.
+   *
+   * This function traverses the left children of the subtree rooted at `node`
+   * until it reaches the leftmost node, which contains the smallest key.
+   *
+   * @param node Pointer to the root of the subtree to search.
+   * @return Node* Pointer to the node with the minimum key, or `nullptr` if the
+   * subtree is empty.
+   */
+  Node *getMin(Node *node);
+
 public:
   /**
    * @brief Set builder
