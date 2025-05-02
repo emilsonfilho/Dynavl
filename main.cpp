@@ -23,6 +23,7 @@
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
+#include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
 #include "Commander/Commands/SwapCommand.hpp"
@@ -59,6 +60,7 @@ int main() {
   SwapCommand swapCommand("swap", "troca dois conjuntos no sistema");
   EraseCommand eraseCommand("erase",
                             "remove um valor dado de um conjunto do sistema");
+  MinimumCommand minimumCommand("minimum", "diz o menor valor em um conjunto");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -153,6 +155,15 @@ int main() {
 
         return new EraseCommandContext(sets, index, key);
       });
+
+  invoker.registerCommand(minimumCommand.getName(), &minimumCommand,
+                          [&sets]() -> CommandContext * {
+                            ValidateRepositoryNotEmpty(sets);
+
+                            int index = promptValidIndex(sets, PromptIndexSet);
+
+                            return new MinimumCommandContext(sets, index);
+                          });
 
   while (true) {
     try {
