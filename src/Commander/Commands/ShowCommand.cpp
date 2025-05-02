@@ -8,7 +8,7 @@ void ShowCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<ShowCommandContext *>(context);
 
   if (ctx) {
-  	const Repository repo = ctx->repository;
+  	ConstRepository repo = ctx->repository;
   	queue<int> setIndexes = ctx->indexes;
 
     if (setIndexes.empty())

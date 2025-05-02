@@ -1,7 +1,6 @@
 #ifndef SIZE_COMMAND_CONTEXT_HPP
 #define SIZE_COMMAND_CONTEXT_HPP
 
-#include "../def/Repository.hpp"
 #include "Commander/Contexts/IndexedCommandContext.hpp"
 
 using std::string;
@@ -13,7 +12,7 @@ public:
    *
    * @param repository DI for data from the running system
    */
-  SizeCommandContext(const Repository repository, int index);
+  SizeCommandContext(ConstRepository repository, int index);
 };
 
 #endif

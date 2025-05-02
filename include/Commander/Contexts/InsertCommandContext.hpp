@@ -7,7 +7,7 @@ class InsertCommandContext : public IndexedCommandContext {
 public:
 	int value;
 
-    InsertCommandContext(const Repository repository, int index, int value);
+    InsertCommandContext(ConstRepository repository, int index, int value);
 };
 
 #endif

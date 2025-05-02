@@ -3,7 +3,7 @@
 
 #include <queue>
 
-#include "../def/Repository.hpp"
+#include "../def/ConstRepository.hpp"
 #include "Utils/Tools/GetValidString.hpp"
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
 #include "Utils/Validation/ValidateIndexes.hpp"
@@ -25,6 +25,6 @@ using std::istringstream;
  * @throws InvalidNumberInputException if non-integer input is provided.
  * @throws InvalidIndexException if any index is out of bounds.
  */
-queue<int> promptMultipleIndexes(const Repository repository, const string& prompt);
+queue<int> promptMultipleIndexes(ConstRepository repository, const string& prompt);
 
 #endif

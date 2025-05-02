@@ -1,6 +1,6 @@
 #include "Utils/IO/PromptMultipleIndexes.hpp"
 
-queue<int> promptMultipleIndexes(const Repository repository, const string& prompt) {
+queue<int> promptMultipleIndexes(ConstRepository repository, const string& prompt) {
 	istringstream bufferedData(getValidString(prompt,
 		[&](const string& data) {
 			ValidateOnlyIntegers(data);

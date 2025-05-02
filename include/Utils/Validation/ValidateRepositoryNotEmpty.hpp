@@ -1,7 +1,7 @@
 #ifndef VALIDATE_REPOSITORY_NOT_EMPTY_HPP
 #define VALIDATE_REPOSITORY_NOT_EMPTY_HPP
 
-#include "../def/Repository.hpp"
+#include "../def/ConstRepository.hpp"
 #include "Utils/Validation/ValidateEmptyRepository.hpp"
 
 /**
@@ -13,6 +13,6 @@
  * @param repository The repository to validate.
  * @throws EmptyRepositoryException if the repository is empty.
  */
-void ValidateRepositoryNotEmpty(const Repository sets);
+void ValidateRepositoryNotEmpty(ConstRepository sets);
 
 #endif

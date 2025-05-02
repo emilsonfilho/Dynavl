@@ -1,7 +1,7 @@
 #ifndef INDEXED_COMMAND_HPP
 #define INDEXED_COMMAND_HPP
 
-#include "../def/Repository.hpp"
+#include "../def/ConstRepository.hpp"
 #include "Commander/Contexts/CommandContext.hpp"
 
 /**
@@ -22,14 +22,14 @@ public:
     /**
      * @brief The repository associated with the command's context.
      */
-    Repository repository;
+    ConstRepository repository;
 
     /**
      * @brief Constructs an IndexedCommandContext with the given repository and index.
      * @param repository The repository associated with the command.
      * @param index The index of the command.
      */
-    IndexedCommandContext(const Repository repository, int index)
+    IndexedCommandContext(ConstRepository repository, int index)
         : repository(repository), index(index) {}
 };
 
