@@ -283,6 +283,7 @@ public:
    * key) and returns its key.
    *
    * @return int The minimum key in the set.
+   * @throws EmptySetException If the set is empty.
    */
   int minimum() const;
 #ifdef TEST_MODE
