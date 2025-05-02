@@ -1,7 +1,7 @@
 #ifndef PROMPT_VALID_INDEX_HPP
 #define PROMPT_VALID_INDEX_HPP 
 
-#include "../def/Repository.hpp"
+#include "../def/ConstRepository.hpp"
 #include "Utils/Tools/GetValidNumber.hpp"
 #include "Utils/Validation/ValidateIndex.hpp"
 
@@ -18,6 +18,6 @@ using std::string;
  * @param prompt The message displayed to the user when requesting input.
  * @return int A valid index within the repository.
  */
-int promptValidIndex(const Repository repository, const string& prompt);
+int promptValidIndex(ConstRepository repository, const string& prompt);
 
 #endif

@@ -1,5 +1,5 @@
 #include "Utils/Validation/ValidateRepositoryNotEmpty.hpp"
 
-void ValidateRepositoryNotEmpty(const Repository repositorySize) {
+void ValidateRepositoryNotEmpty(ConstRepository repositorySize) {
 	ValidateEmptyRepository(repositorySize.size());
 }

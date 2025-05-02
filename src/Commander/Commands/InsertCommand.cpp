@@ -8,7 +8,7 @@ void InsertCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<InsertCommandContext *>(context);
 
   if (ctx) {
-  	Repository repo = ctx->repository;
+  	ConstRepository repo = ctx->repository;
   	int index = ctx->index, value = ctx->value;
 
   	repo[index].set->insert(value);

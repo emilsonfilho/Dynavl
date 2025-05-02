@@ -8,7 +8,7 @@ void SizeCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<SizeCommandContext *>(context);
 
   if (ctx) {
-  	const Repository repo = ctx->repository;
+  	ConstRepository repo = ctx->repository;
   	int index = ctx->index;
 
     cout << "O tamanho do conjunto " << index << " eh " << repo[index].set->size() << '\n';

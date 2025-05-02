@@ -2,6 +2,7 @@
 #define INVALID_NUMBER_INPUT_EXCEPTION_HPP
 
 #include <stdexcept>
+#include <string>
 
 using std::string;
 using std::invalid_argument;

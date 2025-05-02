@@ -1,4 +1,4 @@
 #include "Commander/Contexts/SizeCommandContext.hpp"
 
-SizeCommandContext::SizeCommandContext(const Repository repository, int index)
+SizeCommandContext::SizeCommandContext(ConstRepository repository, int index)
 	: IndexedCommandContext(repository, index) {}

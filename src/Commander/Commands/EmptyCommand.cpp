@@ -8,7 +8,7 @@ void EmptyCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<EmptyCommandContext *>(context);
 
   if (ctx) {
-  	Repository repo = ctx->repository;
+  	ConstRepository repo = ctx->repository;
   	int index = ctx->index;
 
     cout << "O conjunto " << index << (repo[index].set->empty() ? " " : " nao ") << "esta vazio." << '\n';

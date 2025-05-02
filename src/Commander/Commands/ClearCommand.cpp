@@ -8,7 +8,7 @@ void ClearCommand::execute(CommandContext *context) const {
   auto *ctx = dynamic_cast<ClearCommandContext *>(context);
 
   if (ctx) {
-  	Repository repo = ctx->repository;
+  	ConstRepository repo = ctx->repository;
   	int index = ctx->index;
 
   	repo[index].set->clear();
