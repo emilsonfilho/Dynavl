@@ -23,6 +23,7 @@
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
+#include "Commander/Commands/MaximumCommand.hpp"
 #include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
@@ -61,6 +62,7 @@ int main() {
   EraseCommand eraseCommand("erase",
                             "remove um valor dado de um conjunto do sistema");
   MinimumCommand minimumCommand("minimum", "diz o menor valor em um conjunto");
+  MaximumCommand maximumCommand("maximum", "diz o menor valor em um conjunto");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -163,6 +165,15 @@ int main() {
                             int index = promptValidIndex(sets, PromptIndexSet);
 
                             return new MinimumCommandContext(sets, index);
+                          });
+
+  invoker.registerCommand(maximumCommand.getName(), &maximumCommand,
+                          [&sets]() -> CommandContext * {
+                            ValidateRepositoryNotEmpty(sets);
+
+                            int index = promptValidIndex(sets, PromptIndexSet);
+
+                            return new MaximumCommandContext(sets, index);
                           });
 
   while (true) {
