@@ -135,7 +135,7 @@ Node *Set::erase(int key, Node *node) {
     if (!node->left or !node->right) {
       node = (node->left) ? node->left : node->right;
     } else {
-      Node *min = getMin(node);
+      Node *min = getMin(node->right);
       node->key = min->key;
       node->right = erase(min->key, node->right);
     }
