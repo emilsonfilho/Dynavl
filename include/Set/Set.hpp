@@ -212,7 +212,7 @@ private:
    * @param U Reference to the set into which keys from the subtree will be
    * inserted.
    */
-  void insertSubtree(const Set &T, Set &U) const;
+  void insertSubtree(Node *T, Set &U) const;
 
   /**
    * @brief Creates the union of two subtrees into the target set.
@@ -225,7 +225,7 @@ private:
    * @param t2 Pointer to the root of the second subtree.
    * @param U Reference to the set where the union of keys will be stored.
    */
-  void unionSet(const Set &t1, const Set &t2, Set &U) const;
+  void unionSet(Node *t1, Node *t2, Set &U) const;
 
 public:
   /**
@@ -400,7 +400,7 @@ public:
    * @param T The set to union with the current set.
    * @return Set A new set containing all unique elements from both sets.
    */
-  void unionSet(const Set &set) const;
+  Set unionSet(const Set &set) const;
 
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
