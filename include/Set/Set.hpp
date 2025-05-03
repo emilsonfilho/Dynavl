@@ -202,6 +202,31 @@ private:
    */
   Node *search(int key, Node *node) const;
 
+  /**
+   * @brief Inserts all keys from the given subtree into another set.
+   *
+   * This function performs an in-order traversal of the subtree rooted at `T`,
+   * inserting each node’s key into the target set `U`, preserving sorted order.
+   *
+   * @param T Pointer to the root of the subtree whose keys will be inserted.
+   * @param U Reference to the set into which keys from the subtree will be
+   * inserted.
+   */
+  void insertSubtree(const Set &T, Set &U) const;
+
+  /**
+   * @brief Creates the union of two subtrees into the target set.
+   *
+   * This function traverses both input subtrees in parallel, inserting all keys
+   * from both trees into the target set `U`. It handles cases where one subtree
+   * is null by inserting all remaining keys from the other subtree.
+   *
+   * @param t1 Pointer to the root of the first subtree.
+   * @param t2 Pointer to the root of the second subtree.
+   * @param U Reference to the set where the union of keys will be stored.
+   */
+  void unionSet(const Set &t1, const Set &t2, Set &U) const;
+
 public:
   /**
    * @brief Set builder
@@ -349,19 +374,34 @@ public:
   int predecessor(int key) const;
 
   /**
-  * @brief Returns the key of the successor for the given key in the set.
-  *
-  * This function searches for the node with the specified key, then finds the smallest key
-  * greater than the given key. It first checks if the set is empty and throws an exception if so.
-  * If the key is not found or no successor exists, appropriate exceptions are thrown.
-  *
-  * @param key The key whose successor is to be found.
-  * @return int The key of the successor node.
-  * @throws EmptySetException if the set is empty.
-  * @throws ValueNotFoundException if the specified key is not found in the set.
-  * @throws NoSuccessorException if there is no successor for the given key.
-  */
+   * @brief Returns the key of the successor for the given key in the set.
+   *
+   * This function searches for the node with the specified key, then finds the
+   * smallest key greater than the given key. It first checks if the set is
+   * empty and throws an exception if so. If the key is not found or no
+   * successor exists, appropriate exceptions are thrown.
+   *
+   * @param key The key whose successor is to be found.
+   * @return int The key of the successor node.
+   * @throws EmptySetException if the set is empty.
+   * @throws ValueNotFoundException if the specified key is not found in the
+   * set.
+   * @throws NoSuccessorException if there is no successor for the given key.
+   */
   int successor(int key) const;
+
+  /**
+   * @brief Returns a new set representing the union of this set and another.
+   *
+   * This function creates a temporary set `U`, inserts all elements from
+   * both the current set and the given set `T` into it, and returns `U` as
+   * the union of the two sets.
+   *
+   * @param T The set to union with the current set.
+   * @return Set A new set containing all unique elements from both sets.
+   */
+  void unionSet(const Set &set) const;
+
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;
