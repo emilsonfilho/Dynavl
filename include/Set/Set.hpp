@@ -397,7 +397,7 @@ public:
    * both the current set and the given set `T` into it, and returns `U` as
    * the union of the two sets.
    *
-   * @param T The set to union with the current set.
+   * @param set The set to union with the current set.
    * @return Set A new set containing all unique elements from both sets.
    */
   Set unionSet(const Set &set) const;
