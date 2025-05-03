@@ -4,7 +4,7 @@
 #include "../def/ConstRepository.hpp"
 #include "Commander/Contexts/DoubleIndexedCommandContext.hpp"
 
-class SwapCommandContext : public DoubleIndexedCommandContext {
+class SwapCommandContext : public DoubleIndexedCommandContext<ConstRepository> {
 public:
   /**
    * @brief Constructs a context for a "swap" command operation.

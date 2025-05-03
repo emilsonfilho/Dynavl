@@ -13,6 +13,7 @@
  * such as two indexes to identify a specific command and a repository
  * to provide context for the command's execution.
  */
+ template <typename R>
 class DoubleIndexedCommandContext : public CommandContext {
 public:
   ConstRepository repository;
@@ -26,7 +27,7 @@ public:
    * @param index1 The first index of the command.
    * @param index2 The second index of the command.
    */
-  DoubleIndexedCommandContext(ConstRepository repository, int index1,
+  DoubleIndexedCommandContext(R repository, int index1,
                               int index2)
       : repository(repository), index1(index1), index2(index2) {}
 };
