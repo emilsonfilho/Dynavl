@@ -6,9 +6,11 @@
 
 #include "Exceptions/EmptySetException.hpp"
 #include "Exceptions/NoPredecessorException.hpp"
+#include "Exceptions/NoSuccessorException.hpp"
 #include "Exceptions/ValueNotFoundException.hpp"
 #include "Messages/EmptySetMessage.hpp"
 #include "Messages/NoPredecessorMessage.hpp"
+#include "Messages/NoSuccessorMessage.hpp"
 #include "Messages/ValueNotFoundMessage.hpp"
 #include "Node/Node.hpp"
 
@@ -345,6 +347,21 @@ public:
    * key.
    */
   int predecessor(int key) const;
+
+  /**
+  * @brief Returns the key of the successor for the given key in the set.
+  *
+  * This function searches for the node with the specified key, then finds the smallest key
+  * greater than the given key. It first checks if the set is empty and throws an exception if so.
+  * If the key is not found or no successor exists, appropriate exceptions are thrown.
+  *
+  * @param key The key whose successor is to be found.
+  * @return int The key of the successor node.
+  * @throws EmptySetException if the set is empty.
+  * @throws ValueNotFoundException if the specified key is not found in the set.
+  * @throws NoSuccessorException if there is no successor for the given key.
+  */
+  int successor(int key) const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;

@@ -265,6 +265,36 @@ int Set::predecessor(int key) const {
   return predecessor->key;
 }
 
+int Set::successor(int key) {
+	if (empty())
+		throw EmptySetException(EmptySetMessage());
+
+	Node* node = search(key, root);
+
+	if (!node)
+		throw ValueNotFoundException(ValueNotFoundMessage(key));
+
+	if (node->right)
+		return getMin(node->right)->key;
+
+	Node* aux = root, successor = nullptr;
+	while (aux) {
+		if (node->key < aux->key) {
+			successor = node;
+			node = node->left,
+		} else if (node->key > aux->key) {
+			node = node->right;
+		} else {
+			break,
+		}
+	}
+
+	if (!successor)
+		throw NoSuccessorException(NoSuccessorMessage(key));
+
+	return sucessor->key;	
+}
+
 #ifdef TEST_MODE
 Node *Set::getRoot() const { return root; }
 int Set::getBalanceForTest(Node *node) const { return getBalance(node); }
