@@ -30,6 +30,7 @@
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
 #include "Commander/Commands/SwapCommand.hpp"
+#include "Commander/Commands/UnionCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
 
 #include "Utils/Validation/ValidateOnlyIntegers.hpp"
@@ -68,6 +69,7 @@ int main() {
   PredecessorCommand predecessorCommand(
       "predecessor", "exibe o antecessor de um dado numero de um conjunto");
   SuccessorCommand successorCommand("successor", "exibe o sucessor de um dado numero de um conjunto");
+  UnionCommand unionCommand("union", "une dois conjuntos do sistema");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -200,6 +202,15 @@ int main() {
 
   	return new SuccessorCommandContext(sets, index, key);
   });  
+
+  invoker.registerCommand(unionCommand.getName(), &unionCommand,  [&sets]() -> CommandContext * {
+  	ValidateRepositoryNotEmpty(sets);
+
+  	int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+  	    index2 = promptValidIndex(sets, PromptIndexSecondSet);
+
+  	return new UnionCommandContext(sets, index1, index2);
+  });
 
   while (true) {
     try {
