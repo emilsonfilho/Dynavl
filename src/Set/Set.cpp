@@ -236,14 +236,13 @@ int Set::maximum() const {
 }
 
 int Set::predecessor(int key) const {
+  if (empty())
+    throw EmptySetException(EmptySetMessage());
+
   Node *node = search(key, root);
 
   if (!node)
     throw ValueNotFoundException(ValueNotFoundMessage(key));
-
-  if (empty())
-    throw EmptySetException(EmptySetMessage());
-
   if (node->left) {
     return getMax(node->left)->key;
   }
