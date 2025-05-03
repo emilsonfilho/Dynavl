@@ -400,7 +400,7 @@ public:
    * @param set The set to union with the current set.
    * @return Set A new set containing all unique elements from both sets.
    */
-  Set unionSet(const Set &set) const;
+  Set* unionSet(const Set &T) const;
 
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)

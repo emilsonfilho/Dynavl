@@ -326,9 +326,9 @@ int Set::successor(int key) const {
 	return successor->key;	
 }
 
-Set Set::unionSet(const Set& T) const {
-	Set U;
-	unionSet(root, T.root, U);
+Set* Set::unionSet(const Set& T) const {
+	Set *U = new Set();
+	unionSet(root, T.root, *U);
 	return U;
 }
 
