@@ -26,6 +26,7 @@
 #include "Commander/Commands/MaximumCommand.hpp"
 #include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/PredecessorCommand.hpp"
+#include "Commander/Commands/SuccessorCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
 #include "Commander/Commands/SwapCommand.hpp"
@@ -66,6 +67,7 @@ int main() {
   MaximumCommand maximumCommand("maximum", "diz o menor valor em um conjunto");
   PredecessorCommand predecessorCommand(
       "predecessor", "exibe o antecessor de um dado numero de um conjunto");
+  SuccessorCommand successorCommand("successor", "exibe o sucessor de um dado numero de um conjunto");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -189,6 +191,15 @@ int main() {
 
                             return new PredecessorCommandContext(sets, index, key);
                           });
+
+  invoker.registerCommand(successorCommand.getName(), &successorCommand, [&sets]() -> CommandContext * {
+  	ValidateRepositoryNotEmpty(sets);
+
+  	int index = promptValidIndex(sets, promptIndexSet),
+  	    key = getValidNumber(PromptSuccessorNumber, [](const int data) {});
+
+  	return new SuccessorCommandContext(sets, index, key);
+  });  
 
   while (true) {
     try {
