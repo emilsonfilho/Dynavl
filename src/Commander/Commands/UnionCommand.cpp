@@ -12,8 +12,8 @@ void UnionCommand::execute(CommandContext *context) const {
         
         Set res = repo[index1].set->unionSet(*(repo[index2].set));
 
-        repo.emplace_back(res, formatOrigin("uniao", index1, index2));
+        repo.emplace_back(&res, formatOrigin("uniao", index1, index2));
         
-        cout << "A uniao dos conjuntos foi armazenada em " << repo[repo.size() - 1]  <<  '\n';
+        cout << "A uniao dos conjuntos foi armazenada em " << (repo.size() - 1) <<  '\n';
     }
 }   

@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "../def/Repository.hpp"
 #include "Commander/Contexts/DoubleIndexedCommandContext.hpp"
 
 using std::string;
