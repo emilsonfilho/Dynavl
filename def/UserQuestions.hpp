@@ -17,5 +17,7 @@ const string PromptInsertNumber = "Insira o número que você quer adicionar: ";
 const string PromptEraseNumber = "Insira o número que você quer remover: ";
 const string PromptIndexFirstSet = "Insira o indice do primeiro conjunto: ";
 const string PromptIndexSecondSet = "Insira o indice do segundo conjunto: ";
+const string PromptPredecessorNumber =
+    "Insira o numero que voce queira saber o antecessor: ";
 
 #endif

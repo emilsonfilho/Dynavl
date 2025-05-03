@@ -5,7 +5,11 @@
 #include <iostream>
 
 #include "Exceptions/EmptySetException.hpp"
+#include "Exceptions/NoPredecessorException.hpp"
+#include "Exceptions/ValueNotFoundException.hpp"
 #include "Messages/EmptySetMessage.hpp"
+#include "Messages/NoPredecessorMessage.hpp"
+#include "Messages/ValueNotFoundMessage.hpp"
 #include "Node/Node.hpp"
 
 using namespace std;
@@ -182,6 +186,20 @@ private:
    */
   Node *getMax(Node *node) const;
 
+  /**
+   * @brief Recursively searches for a node with the given key in the subtree.
+   *
+   * This function traverses the subtree rooted at `node`, comparing the search
+   * key to each node's key and descending left or right accordingly. It returns
+   * a pointer to the node if found, or `nullptr` if the key is not present.
+   *
+   * @param key The key to search for in the subtree.
+   * @param node Pointer to the root of the subtree to search.
+   * @return Node* Pointer to the node containing the key, or `nullptr` if not
+   * found.
+   */
+  Node *search(int key, Node *node) const;
+
 public:
   /**
    * @brief Set builder
@@ -310,6 +328,23 @@ public:
    * @throws EmptySetException if the set is empty.
    */
   int maximum() const;
+
+  /**
+   * @brief Returns the key of the predecessor for the given key in the set.
+   *
+   * This function searches for the node with the specified key, then finds the
+   * largest key smaller than the given key. If the key is not found, the set is
+   * empty, or no predecessor exists, appropriate exceptions are thrown.
+   *
+   * @param key The key whose predecessor is to be found.
+   * @return int The key of the predecessor node.
+   * @throws ValueNotFoundException if the specified key is not found in the
+   * set.
+   * @throws EmptySetException if the set is empty.
+   * @throws NoPredecessorException if there is no predecessor for the given
+   * key.
+   */
+  int predecessor(int key) const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;
