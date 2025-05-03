@@ -15,7 +15,7 @@ public:
    * @brief Constructs a UnionCommand with the given name and description.
    *
    * Initializes the base Command class using the provided name and description,
-   * setting up the command to perform a swap operation between two sets.
+   * setting up the command to perform a union operation between two sets.
    *
    * @param name The name of the command.
    * @param description A brief description of what the command does.
