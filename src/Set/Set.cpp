@@ -169,6 +169,19 @@ Node *Set::getMax(Node *node) const {
   return getMax(node->right);
 }
 
+Node* Set::search(int key, Node *node) const {
+  if (!node)
+    return nullptr;
+
+  if (key == node->key) {
+    return node;
+  } else if (key < node->key) {
+    return search(key, node->left);
+  } else {
+    return search(key, node->right);
+  }
+}
+
 /**
  * Public Functions
  */
@@ -220,6 +233,37 @@ int Set::maximum() const {
     throw EmptySetException(EmptySetMessage());
 
   return getMax(root)->key;
+}
+
+int Set::predecessor(int key) const {
+  Node *node = search(key, root);
+
+  if (!node)
+    throw ValueNotFoundException(ValueNotFoundMessage(key));
+
+  if (empty())
+    throw EmptySetException(EmptySetMessage());
+
+  if (node->left) {
+    return getMax(node->left)->key;
+  }
+
+  Node *aux = root, *predecessor = nullptr;
+  while (aux) {
+    if (node->key < aux->key) {
+      aux = aux->left;
+    } else if (node->key > aux->key) {
+      predecessor = aux;
+      aux = aux->right;
+    } else {
+      break;
+    }
+  }
+
+  if (!predecessor)
+    throw NoPredecessorException(NoPredecessorMessage(key));
+
+  return predecessor->key;
 }
 
 #ifdef TEST_MODE
