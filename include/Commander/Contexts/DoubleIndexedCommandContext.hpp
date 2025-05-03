@@ -1,7 +1,6 @@
 #ifndef DOUBLE_INDEXED_COMMAND_HPP
 #define DOUBLE_INDEXED_COMMAND_HPP
 
-#include "../def/ConstRepository.hpp"
 #include "Commander/Contexts/CommandContext.hpp"
 
 /**
@@ -16,7 +15,7 @@
  template <typename R>
 class DoubleIndexedCommandContext : public CommandContext {
 public:
-  ConstRepository repository;
+  R repository;
   int index1;
   int index2;
 
