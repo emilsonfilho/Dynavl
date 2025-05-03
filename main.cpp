@@ -195,7 +195,7 @@ int main() {
   invoker.registerCommand(successorCommand.getName(), &successorCommand, [&sets]() -> CommandContext * {
   	ValidateRepositoryNotEmpty(sets);
 
-  	int index = promptValidIndex(sets, promptIndexSet),
+  	int index = promptValidIndex(sets, PromptIndexSet),
   	    key = getValidNumber(PromptSuccessorNumber, [](const int data) {});
 
   	return new SuccessorCommandContext(sets, index, key);

@@ -265,7 +265,7 @@ int Set::predecessor(int key) const {
   return predecessor->key;
 }
 
-int Set::successor(int key) {
+int Set::successor(int key) const {
 	if (empty())
 		throw EmptySetException(EmptySetMessage());
 
@@ -277,22 +277,22 @@ int Set::successor(int key) {
 	if (node->right)
 		return getMin(node->right)->key;
 
-	Node* aux = root, successor = nullptr;
+	Node* aux = root, *successor = nullptr;
 	while (aux) {
 		if (node->key < aux->key) {
-			successor = node;
-			node = node->left,
+			successor = aux;
+			aux = aux->left;
 		} else if (node->key > aux->key) {
-			node = node->right;
+			aux = aux->right;
 		} else {
-			break,
+			break;
 		}
 	}
 
 	if (!successor)
 		throw NoSuccessorException(NoSuccessorMessage(key));
 
-	return sucessor->key;	
+	return successor->key;	
 }
 
 #ifdef TEST_MODE
