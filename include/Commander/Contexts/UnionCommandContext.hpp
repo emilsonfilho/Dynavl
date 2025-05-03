@@ -7,14 +7,14 @@
 
 using std::string;
 
-class UnionCommandContext : public DoubleIndexedCommandContext {
+class UnionCommandContext : public DoubleIndexedCommandContext<Repository> {
 public:
   /**
    * @brief Context builder to join two sets on the system
    *
    * @param repository DI for data from the running system
    */
-  UnionCommandContext(ConstRepository repository, int index1, int index2);
+  UnionCommandContext(Repository repository, int index1, int index2);
 };
 
 #endif
