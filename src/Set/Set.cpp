@@ -182,6 +182,37 @@ Node* Set::search(int key, Node *node) const {
   }
 }
 
+void Set::insertSubtree(Node* T, Set& U) const {
+	if (!T) return;
+
+	insertSubtree(T->left, U);
+
+	U.insert(T->key);
+	
+	insertSubtree(T->right, U);
+}
+
+void Set::unionSet(Node* t1, Node* t2, Set& U) const {
+	if (!t1 and !t2) return;
+	
+	if (!t1) {
+		insertSubtree(t2, U);
+		return;
+	}
+	
+	if (!t2) {
+		insertSubtree(t1, U);
+		return;
+	}
+
+	unionSet(t1->left, t2->left, U);
+
+	U.insert(t1->key);
+	U.insert(t2->key);
+
+	unionSet(t1->right, t2->right, U);
+}
+
 /**
  * Public Functions
  */
@@ -293,6 +324,12 @@ int Set::successor(int key) const {
 		throw NoSuccessorException(NoSuccessorMessage(key));
 
 	return successor->key;	
+}
+
+Set* Set::unionSet(const Set& T) const {
+	Set *U = new Set();
+	unionSet(root, T.root, *U);
+	return U;
 }
 
 #ifdef TEST_MODE
