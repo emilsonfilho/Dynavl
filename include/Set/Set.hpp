@@ -215,7 +215,8 @@ private:
   void unionSet(Node *t1, Node *t2, Set &U) const;
 
   /**
-   * @brief Performs an in-order traversal of the subtree and appends node keys to a vector.
+   * @brief Performs an in-order traversal of the subtree and appends node keys
+   * to a vector.
    *
    * Recursively visits the left child, records the current node’s key, and then
    * visits the right child, resulting in a sorted sequence of keys.
@@ -428,12 +429,13 @@ public:
   /**
    * @brief Computes the set difference of this set and another.
    *
-   * This function returns a new set containing elements that belong to the current set
-   * but not to the given set `T`. Both sets are traversed in sorted order to efficiently
-   * identify and insert unique elements into the result.
+   * This function returns a new set containing elements that belong to the
+   * current set but not to the given set `T`. Both sets are traversed in sorted
+   * order to efficiently identify and insert unique elements into the result.
    *
    * @param T The set to subtract from the current set.
-   * @return Set* A pointer to a new set containing elements in this set that are not in `T`.
+   * @return Set* A pointer to a new set containing elements in this set that
+   * are not in `T`.
    */
   Set *differenceSet(const Set &T) const;
 #ifdef TEST_MODE

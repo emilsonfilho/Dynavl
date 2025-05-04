@@ -3,25 +3,25 @@
 
 #include <iostream>
 
-using std::string;
 using std::cout;
+using std::string;
 
 #include "Commander/Commands/Command.hpp"
 #include "Commander/Contexts/EmptyCommandContext.hpp"
 
 class EmptyCommand : public Command {
 public:
-	/*
-	 * @brief EmptyCommand constructor
-	 */
-	EmptyCommand(const string& name, const string& description);
+  /*
+   * @brief EmptyCommand constructor
+   */
+  EmptyCommand(const string &name, const string &description);
 
-	/*
-	 * @brief EmptyCommand execution function
-	 * 
-	 * @param context Command context
-	 */
-	void execute(CommandContext *context) const override;
+  /*
+   * @brief EmptyCommand execution function
+   *
+   * @param context Command context
+   */
+  void execute(CommandContext *context) const override;
 };
 
 #endif

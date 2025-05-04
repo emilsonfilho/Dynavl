@@ -1,9 +1,9 @@
 #ifndef INVOKER_HPP
 #define INVOKER_HPP
 
-#include "Messages/InvalidCommandMessage.hpp"
-#include "Exceptions/InvalidCommandException.hpp"
 #include "Commander/Commands/HelpCommand.hpp"
+#include "Exceptions/InvalidCommandException.hpp"
+#include "Messages/InvalidCommandMessage.hpp"
 
 using std::string;
 

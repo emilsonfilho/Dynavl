@@ -6,12 +6,12 @@
 
 class IndexedCommandContext : public CommandContext {
 public:
-    int index;
+  int index;
 
-    ConstRepository repository;
+  ConstRepository repository;
 
-    IndexedCommandContext(ConstRepository repository, int index)
-        : repository(repository), index(index) {}
+  IndexedCommandContext(ConstRepository repository, int index)
+      : repository(repository), index(index) {}
 };
 
 #endif

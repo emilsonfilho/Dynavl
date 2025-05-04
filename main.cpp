@@ -46,7 +46,6 @@
 using std::cin;
 using std::exception;
 using std::getline;
-// using std::endl;
 
 int main() {
   CommandInvoker invoker;
@@ -75,7 +74,8 @@ int main() {
       "successor", "exibe o sucessor de um dado numero de um conjunto");
   UnionCommand unionCommand("union", "une dois conjuntos do sistema");
   IntersectionCommand intersectionCommand(
-      "intersecao", "reune os elementos em comum de dois conjuntos do sistema");
+      "intersection",
+      "reune os elementos em comum de dois conjuntos do sistema");
   DifferenceCommand differenceCommand(
       "difference", "extrai todos os elementos exclusivos do primeiro em "
                     "relacao a uniao de dois conjuntos no sistema");

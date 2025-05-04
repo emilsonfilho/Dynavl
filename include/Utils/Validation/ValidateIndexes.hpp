@@ -1,17 +1,18 @@
 #ifndef VALIDATE_INDEXES
-#define VALIDATE_INDEXES 
+#define VALIDATE_INDEXES
 
 #include "Exceptions/InvalidIndexStringException.hpp"
 #include "Messages/InvalidIndexStringMessage.hpp"
 
-#include <string>
 #include <sstream>
+#include <string>
 
-using std::string;
 using std::istringstream;
+using std::string;
 
 /**
- * @brief Validates that each index in the input string is within the valid range.
+ * @brief Validates that each index in the input string is within the valid
+ * range.
  *
  * This function parses the provided string for integer tokens and ensures
  * that each index is between 0 (inclusive) and repositorySize (exclusive).

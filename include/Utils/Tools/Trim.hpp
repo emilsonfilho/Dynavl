@@ -3,11 +3,11 @@
 
 #include <algorithm>
 #include <cctype>
-#include <string>
 #include <regex>
+#include <string>
 
-using std::string;
 using std::regex;
+using std::string;
 
 /**
  * @brief Removes whitespace from the beginning and end of a string

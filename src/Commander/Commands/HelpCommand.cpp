@@ -1,7 +1,6 @@
 #include "Commander/Commands/HelpCommand.hpp"
 
-HelpCommand::HelpCommand(const string &name,
-                         const string &description,
+HelpCommand::HelpCommand(const string &name, const string &description,
                          const UnorderedMapCommand &mapCommand)
     : Command(name, description), commandRegistry(mapCommand) {}
 

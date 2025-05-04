@@ -7,8 +7,8 @@
 #include "../def/UnorderedCommandMap.hpp"
 #include "Commander/Commands/Command.hpp"
 
-using std::string;
 using std::ostringstream;
+using std::string;
 
 class HelpCommand : public Command {
 private:

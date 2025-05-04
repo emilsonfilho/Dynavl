@@ -1,7 +1,6 @@
 #include "Utils/Tools/GetValidString.hpp"
 
-string getValidString(const string &prompt,
-                           const StringValidator validations) {
+string getValidString(const string &prompt, const StringValidator validations) {
   string str;
 
   while (true) {

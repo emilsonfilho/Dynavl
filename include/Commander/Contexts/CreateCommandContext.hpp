@@ -6,8 +6,8 @@
 #include "../def/Repository.hpp"
 #include "Commander/Contexts/CommandContext.hpp"
 
-using std::string;
 using std::queue;
+using std::string;
 
 class CreateCommandContext : public CommandContext {
 public:
@@ -15,7 +15,8 @@ public:
   queue<int> initialData;
   string origin;
 
-  CreateCommandContext(Repository repository, queue<int>& initialData, const string& origin);
+  CreateCommandContext(Repository repository, queue<int> &initialData,
+                       const string &origin);
 };
 
 #endif
