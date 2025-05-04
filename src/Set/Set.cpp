@@ -376,6 +376,30 @@ Set *Set::intersectionSet(const Set &T) const {
   return I;
 }
 
+Set *Set::differenceSet(const Set &set) const {
+  vector<int> v1 = this->inOrder(), v2 = T.inOrder();
+
+  int i = 0, j = 0;
+  Set *D = new Set();
+
+  while (i < _size and j < T.size()) {
+    if (v1[i] == v2[j]) {
+      i++;
+      j++;
+    } else if (v1[i] < v2[j]) {
+      D.insert(v1[i]);
+      i++;
+    } else {
+      j++;
+    }
+  }
+
+  while (i < _size)
+    D.insert(v1[i]);
+
+  return D;
+}
+
 #ifdef TEST_MODE
 Node *Set::getRoot() const { return root; }
 int Set::getBalanceForTest(Node *node) const { return getBalance(node); }

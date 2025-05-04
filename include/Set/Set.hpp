@@ -440,6 +440,7 @@ public:
    */
   Set *intersectionSet(const Set &T) const;
 
+  Set *differenceSet(const Set &T) const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;
