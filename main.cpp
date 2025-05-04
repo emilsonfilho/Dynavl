@@ -25,6 +25,7 @@
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
 #include "Commander/Commands/IntersectionCommand.hpp"
+#include "Commander/Commands/ListCommand.hpp"
 #include "Commander/Commands/MaximumCommand.hpp"
 #include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/PredecessorCommand.hpp"
@@ -78,6 +79,8 @@ int main() {
   DifferenceCommand differenceCommand(
       "difference", "extrai todos os elementos exclusivos do primeiro em "
                     "relacao a uniao de dois conjuntos no sistema");
+  ListCommand listCommand("list",
+                          "lista a origem de todos os conjuntos do sistema");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -245,6 +248,13 @@ int main() {
 
         return new DifferenceCommandContext(sets, index1, index2);
       });
+
+  invoker.registerCommand(listCommand.getName(), &listCommand,
+                          [&sets]() -> CommandContext * {
+                            ValidateRepositoryNotEmpty(sets);
+
+                            return new ListCommandContext(sets);
+                          });
 
   while (true) {
     try {
