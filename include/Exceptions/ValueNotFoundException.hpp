@@ -9,7 +9,7 @@ using std::string;
 class ValueNotFoundException : public runtime_error {
 public:
   /**
-   * @brief Creates an exception for an empty set
+   * @brief Creates an exception for an value not found
    *
    * @param message Message to be displayed
    */

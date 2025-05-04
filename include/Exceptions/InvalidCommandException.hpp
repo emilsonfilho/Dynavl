@@ -9,9 +9,9 @@ using std::string;
 class InvalidCommandException : public runtime_error {
 public:
   /**
-   * @brief Cria uma exceção de coluna inválida
+   * @brief Creates an invalid command exception
    *
-   * @param message Mensagem a ser exibida
+   * @param message Message to be displayed
    */
   explicit InvalidCommandException(const string &message);
 };

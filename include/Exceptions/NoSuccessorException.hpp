@@ -9,7 +9,7 @@ using std::string;
 class NoSuccessorException : public runtime_error {
 public:
   /**
-   * @brief Creates an exception for an empty set
+   * @brief Creates an exception for no successor of a number
    *
    * @param message Message to be displayed
    */

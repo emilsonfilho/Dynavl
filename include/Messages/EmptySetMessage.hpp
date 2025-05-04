@@ -6,7 +6,7 @@
 using std::string;
 
 /**
- * @brief Empty repository message
+ * @brief Empty set message
  */
 string EmptySetMessage();
 

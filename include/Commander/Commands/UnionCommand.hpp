@@ -12,16 +12,14 @@ using std::cout;
 class UnionCommand : public Command {
 public:
   /**
-   * @brief Constructs a UnionCommand with the given name and description.
-   *
-   * Initializes the base Command class using the provided name and description,
-   * setting up the command to perform a union operation between two sets.
-   *
-   * @param name The name of the command.
-   * @param description A brief description of what the command does.
+   * @brief UnionCommmand constructor
    */
   UnionCommand(const string &name, const string &description);
-
+  /*
+   * @brief UnionCommand execution function
+   * 
+   * @param context Command context
+   */
   void execute(CommandContext *context) const override;
 };
 

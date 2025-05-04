@@ -15,11 +15,6 @@ public:
   queue<int> initialData;
   string origin;
 
-  /**
-   * @brief Context builder to create a set on the system
-   *
-   * @param repository DI for data from the running system
-   */
   CreateCommandContext(Repository repository, queue<int>& initialData, const string& origin);
 };
 

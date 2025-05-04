@@ -12,7 +12,7 @@ using std::exception;
 class InvalidNumberInputException : public invalid_argument {
 public:
   /**
-   * @brief Creates an invalid argument exception
+   * @brief Creates an invalid number of input exception
    *
    * @param message Message to be displayed
    */

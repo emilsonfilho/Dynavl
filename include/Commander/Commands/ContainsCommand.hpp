@@ -1,4 +1,3 @@
-
 #ifndef CONTAINS_COMMAND_HPP
 #define CONTAINS_COMMAND_HPP
 

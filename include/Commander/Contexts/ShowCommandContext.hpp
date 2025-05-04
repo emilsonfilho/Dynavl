@@ -14,11 +14,6 @@ public:
   queue<int> indexes;
   ConstRepository repository;
 
-  /**
-   * @brief Context builder to Show command
-   *
-   * @param repository DI for data from the running system
-   */
   ShowCommandContext(ConstRepository repository, const queue<int>& indexes);
 };
 

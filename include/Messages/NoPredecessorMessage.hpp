@@ -7,7 +7,7 @@ using std::string;
 using std::to_string;
 
 /**
- * @brief Empty repository message
+ * @brief No predecessor message
  */
 string NoPredecessorMessage(int key);
 

@@ -12,17 +12,15 @@ using std::cout;
 class IntersectionCommand : public Command {
 public:
   /**
-   * @brief Constructs a IntersectionCommand with the given name and
-   * description.
-   *
-   * Initializes the base Command class using the provided name and description,
-   * setting up the command to perform a union operation between two sets.
-   *
-   * @param name The name of the command.
-   * @param description A brief description of what the command does.
+   * @brief InsertCommand constructor
    */
   IntersectionCommand(const string &name, const string &description);
 
+  /*
+   * @brief IntersectionCommand execution function
+   * 
+   * @param context Command context
+   */
   void execute(CommandContext *context) const override;
 };
 

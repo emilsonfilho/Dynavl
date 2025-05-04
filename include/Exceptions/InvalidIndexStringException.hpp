@@ -9,7 +9,7 @@ using std::invalid_argument;
 class InvalidIndexStringException : public invalid_argument {
 public:
   /**
-   * @brief Creates an invalid argument exception
+   * @brief Creates an invalid index string exception
    *
    * @param message Message to be displayed
    */

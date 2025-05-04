@@ -11,11 +11,6 @@ using std::string;
 class DifferenceCommandContext
     : public DoubleIndexedCommandContext<Repository> {
 public:
-  /**
-   * @brief Context builder to diff two sets on the system
-   *
-   * @param repository DI for data from the running system
-   */
   DifferenceCommandContext(Repository repository, int index1, int index2);
 };
 

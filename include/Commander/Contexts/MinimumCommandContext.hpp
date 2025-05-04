@@ -7,11 +7,6 @@ using std::string;
 
 class MinimumCommandContext : public IndexedCommandContext {
 public:
-  /**
-   * @brief Context builder to minimum command
-   *
-   * @param repository DI for data from the running system
-   */
   MinimumCommandContext(ConstRepository repository, int index);
 };
 

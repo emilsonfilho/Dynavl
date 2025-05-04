@@ -7,11 +7,6 @@ using std::string;
 
 class EmptyCommandContext : public IndexedCommandContext {
 public:
-  /**
-   * @brief Context builder to empty command
-   *
-   * @param repository DI for data from the running system
-   */
   EmptyCommandContext(ConstRepository repository, int index);
 };
 

@@ -10,7 +10,7 @@ using std::invalid_argument;
 class InvalidIndexException : public invalid_argument {
 public:
   /**
-   * @brief Creates an invalid argument exception
+   * @brief Creates an invalid index exception
    *
    * @param message Message to be displayed
    */

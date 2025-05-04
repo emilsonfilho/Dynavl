@@ -136,20 +136,6 @@ private:
   bool contains(int key, Node *node) const;
 
   /**
-   * @brief Displays the tree structure in a formatted way.
-   *
-   * This function recursively prints the tree sideways, showing the hierarchy
-   * of nodes using special characters to represent branches and levels.
-   * It helps visualize the structure of the tree for debugging or educational
-   * purposes.
-   *
-   * @param node Pointer to the current node being displayed.
-   * @param inheritance A string tracking the path taken to reach the current
-   * node, used to format the output.
-   */
-  void show(Node *node, string inheritance) const;
-
-  /**
    * @brief Recursively removes a node with the specified key from a subtree and
    * rebalances it.
    *
@@ -229,14 +215,13 @@ private:
   void unionSet(Node *t1, Node *t2, Set &U) const;
 
   /**
-   * @brief Returns a new set representing the union of this set and another.
+   * @brief Performs an in-order traversal of the subtree and appends node keys to a vector.
    *
-   * This function creates a temporary set `U`, inserts all elements from
-   * both the current set and the given set `T` into it, and returns `U` as
-   * the union of the two sets.
+   * Recursively visits the left child, records the current node’s key, and then
+   * visits the right child, resulting in a sorted sequence of keys.
    *
-   * @param T The set to union with the current set.
-   * @return Set A new set containing all unique elements from both sets.
+   * @param node Pointer to the root of the subtree to traverse.
+   * @param v Reference to a vector where the keys will be collected.
    */
   void inOrder(Node *node, vector<int> &v) const;
 
@@ -247,6 +232,14 @@ public:
    * Creates a set with no elements
    */
   Set();
+
+  /**
+   * @brief Destructor for the Set class.
+   *
+   * This destructor ensures that all dynamically allocated nodes in the tree
+   * are properly deleted by calling the `clear` function.
+   */
+  ~Set();
 
   /**
    * @brief Inserts a new value
@@ -312,18 +305,10 @@ public:
   bool empty() const;
 
   /**
-   * @brief Destructor for the Set class.
+   * @brief Prints the set’s elements in ascending order.
    *
-   * This destructor ensures that all dynamically allocated nodes in the tree
-   * are properly deleted by calling the `clear` function.
-   */
-  ~Set();
-
-  /**
-   * @brief Displays the entire tree structure starting from the root.
-   *
-   * This function is a wrapper that initiates the recursive `show` function,
-   * printing a formatted view of the entire tree for visualization.
+   * This function retrieves all keys via an in-order traversal,
+   * then outputs them enclosed in square brackets for easy viewing.
    */
   void show() const;
 
@@ -404,6 +389,17 @@ public:
   int successor(int key) const;
 
   /**
+   * @brief Returns a vector of all keys in the set using in-order traversal.
+   *
+   * This function allocates a vector with reserved space equal to the set size,
+   * performs an in-order traversal starting from the root to collect keys in
+   * sorted order, and returns the filled vector.
+   *
+   * @return std::vector<int> A vector containing all keys in ascending order.
+   */
+  vector<int> inOrder() const;
+
+  /**
    * @brief Returns a new set representing the union of this set and another.
    *
    * This function creates a temporary set `U`, inserts all elements from
@@ -414,17 +410,6 @@ public:
    * @return Set A new set containing all unique elements from both sets.
    */
   Set *unionSet(const Set &T) const;
-
-  /**
-   * @brief Returns a vector of all keys in the set using in-order traversal.
-   *
-   * This function allocates a vector with reserved space equal to the set size,
-   * performs an in-order traversal starting from the root to collect keys in
-   * sorted order, and returns the filled vector.
-   *
-   * @return std::vector<int> A vector containing all keys in ascending order.
-   */
-  vector<int> inOrder() const;
 
   /**
    * @brief Computes the intersection of this set with another set.
@@ -440,6 +425,16 @@ public:
    */
   Set *intersectionSet(const Set &T) const;
 
+  /**
+   * @brief Computes the set difference of this set and another.
+   *
+   * This function returns a new set containing elements that belong to the current set
+   * but not to the given set `T`. Both sets are traversed in sorted order to efficiently
+   * identify and insert unique elements into the result.
+   *
+   * @param T The set to subtract from the current set.
+   * @return Set* A pointer to a new set containing elements in this set that are not in `T`.
+   */
   Set *differenceSet(const Set &T) const;
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)

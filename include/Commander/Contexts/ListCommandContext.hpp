@@ -8,11 +8,6 @@ class ListCommandContext : public CommandContext {
 public:
   ConstRepository repository;
 
-  /**
-   * @brief Context builder to List command
-   *
-   * @param repository DI for data from the running system
-   */
   ListCommandContext(ConstRepository repository);
 };
 
