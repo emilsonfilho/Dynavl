@@ -215,7 +215,7 @@ void Set::unionSet(Node *t1, Node *t2, Set &U) const {
   unionSet(t1->right, t2->right, U);
 }
 
-void inOrder(Node *node, vector<int> &v) const {
+void Set::inOrder(Node *node, vector<int> &v) const {
   if (!node)
     return;
 
