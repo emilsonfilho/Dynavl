@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 #include "Exceptions/EmptySetException.hpp"
 #include "Exceptions/NoPredecessorException.hpp"
