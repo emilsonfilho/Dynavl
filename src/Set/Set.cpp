@@ -339,7 +339,7 @@ int Set::successor(int key) const {
   return successor->key;
 }
 
-vector<int> inOrder() const {
+vector<int> Set::inOrder() const {
   vector<int> v;
   v.reserve(_size);
 
@@ -355,7 +355,7 @@ Set *Set::unionSet(const Set &T) const {
 }
 
 Set *Set::intersectionSet(const Set &T) const {
-  vector<int> v1 = this.inOrder(), v2 = T.inOrder();
+  vector<int> v1 = this->inOrder(), v2 = T.inOrder();
 
   int i = 0, j = 0;
 
@@ -363,7 +363,7 @@ Set *Set::intersectionSet(const Set &T) const {
 
   while (i < _size and j < T.size()) {
     if (v1[i] == v2[j]) {
-      I.insert(v1[i]);
+      I->insert(v1[i]);
       i++;
       j++;
     } else if (v1[i] < v2[j]) {

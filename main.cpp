@@ -228,7 +228,7 @@ int main() {
         int index1 = promptValidIndex(sets, PromptIndexFirstSet),
             index2 = promptValidIndex(sets, PromptIndexSecondSet);
 
-        return IntersectionCommandContext(sets, index1, index2);
+        return new IntersectionCommandContext(sets, index1, index2);
       });
 
   while (true) {
