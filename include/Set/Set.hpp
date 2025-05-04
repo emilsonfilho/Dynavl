@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 #include "Exceptions/EmptySetException.hpp"
 #include "Exceptions/NoPredecessorException.hpp"
@@ -227,6 +228,18 @@ private:
    */
   void unionSet(Node *t1, Node *t2, Set &U) const;
 
+  /**
+   * @brief Returns a new set representing the union of this set and another.
+   *
+   * This function creates a temporary set `U`, inserts all elements from
+   * both the current set and the given set `T` into it, and returns `U` as
+   * the union of the two sets.
+   *
+   * @param T The set to union with the current set.
+   * @return Set A new set containing all unique elements from both sets.
+   */
+  void inOrder(Node *node, vector<int> &v) const;
+
 public:
   /**
    * @brief Set builder
@@ -400,7 +413,32 @@ public:
    * @param set The set to union with the current set.
    * @return Set A new set containing all unique elements from both sets.
    */
-  Set* unionSet(const Set &T) const;
+  Set *unionSet(const Set &T) const;
+
+  /**
+   * @brief Returns a vector of all keys in the set using in-order traversal.
+   *
+   * This function allocates a vector with reserved space equal to the set size,
+   * performs an in-order traversal starting from the root to collect keys in
+   * sorted order, and returns the filled vector.
+   *
+   * @return std::vector<int> A vector containing all keys in ascending order.
+   */
+  vector<int> inOrder() const;
+
+  /**
+   * @brief Computes the intersection of this set with another set.
+   *
+   * This function collects the elements of both sets in sorted order using
+   * in-order traversal, then iterates through the two sorted vectors to
+   * identify common elements. It inserts each common element into a newly
+   * allocated set and returns a pointer to it.
+   *
+   * @param T The set to intersect with the current set.
+   * @return Set* A pointer to a new set containing elements common to both
+   * sets.
+   */
+  Set *intersectionSet(const Set &T) const;
 
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)

@@ -23,12 +23,13 @@
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
+#include "Commander/Commands/IntersectionCommand.hpp"
 #include "Commander/Commands/MaximumCommand.hpp"
 #include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/PredecessorCommand.hpp"
-#include "Commander/Commands/SuccessorCommand.hpp"
 #include "Commander/Commands/ShowCommand.hpp"
 #include "Commander/Commands/SizeCommand.hpp"
+#include "Commander/Commands/SuccessorCommand.hpp"
 #include "Commander/Commands/SwapCommand.hpp"
 #include "Commander/Commands/UnionCommand.hpp"
 #include "Commander/Invoker/CommandInvoker.hpp"
@@ -68,8 +69,11 @@ int main() {
   MaximumCommand maximumCommand("maximum", "diz o menor valor em um conjunto");
   PredecessorCommand predecessorCommand(
       "predecessor", "exibe o antecessor de um dado numero de um conjunto");
-  SuccessorCommand successorCommand("successor", "exibe o sucessor de um dado numero de um conjunto");
+  SuccessorCommand successorCommand(
+      "successor", "exibe o sucessor de um dado numero de um conjunto");
   UnionCommand unionCommand("union", "une dois conjuntos do sistema");
+  IntersectionCommand intersectionCommand(
+      "intersecao", "reune os elementos em comum de dois conjuntos do sistema");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -183,34 +187,49 @@ int main() {
                             return new MaximumCommandContext(sets, index);
                           });
 
-  invoker.registerCommand(predecessorCommand.getName(), &predecessorCommand,
-                          [&sets]() -> CommandContext * {
-                            ValidateRepositoryNotEmpty(sets);
+  invoker.registerCommand(
+      predecessorCommand.getName(), &predecessorCommand,
+      [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
 
-                            int index = promptValidIndex(sets, PromptIndexSet),
-                                key = getValidNumber(PromptPredecessorNumber,
-                                                     [](const int data) {});
+        int index = promptValidIndex(sets, PromptIndexSet),
+            key =
+                getValidNumber(PromptPredecessorNumber, [](const int data) {});
 
-                            return new PredecessorCommandContext(sets, index, key);
-                          });
+        return new PredecessorCommandContext(sets, index, key);
+      });
 
-  invoker.registerCommand(successorCommand.getName(), &successorCommand, [&sets]() -> CommandContext * {
-  	ValidateRepositoryNotEmpty(sets);
+  invoker.registerCommand(
+      successorCommand.getName(), &successorCommand,
+      [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
 
-  	int index = promptValidIndex(sets, PromptIndexSet),
-  	    key = getValidNumber(PromptSuccessorNumber, [](const int data) {});
+        int index = promptValidIndex(sets, PromptIndexSet),
+            key = getValidNumber(PromptSuccessorNumber, [](const int data) {});
 
-  	return new SuccessorCommandContext(sets, index, key);
-  });  
+        return new SuccessorCommandContext(sets, index, key);
+      });
 
-  invoker.registerCommand(unionCommand.getName(), &unionCommand,  [&sets]() -> CommandContext * {
-  	ValidateRepositoryNotEmpty(sets);
+  invoker.registerCommand(
+      unionCommand.getName(), &unionCommand, [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
 
-  	int index1 = promptValidIndex(sets, PromptIndexFirstSet),
-  	    index2 = promptValidIndex(sets, PromptIndexSecondSet);
+        int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+            index2 = promptValidIndex(sets, PromptIndexSecondSet);
 
-  	return new UnionCommandContext(sets, index1, index2);
-  });
+        return new UnionCommandContext(sets, index1, index2);
+      });
+
+  invoker.registerCommand(
+      intersectionCommand.getName(), &intersectionCommand,
+      [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
+
+        int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+            index2 = promptValidIndex(sets, PromptIndexSecondSet);
+
+        return new IntersectionCommandContext(sets, index1, index2);
+      });
 
   while (true) {
     try {
