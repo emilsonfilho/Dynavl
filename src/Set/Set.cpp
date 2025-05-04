@@ -373,7 +373,7 @@ Set *Set::differenceSet(const Set &T) const {
   int i = 0, j = 0;
   Set *D = new Set();
 
-  while (i < _size and j < T.size()) {
+  while (i < v1.size() and j < v2.size()) {
     if (v1[i] == v2[j]) {
       i++;
       j++;
