@@ -8,12 +8,11 @@
 using std::string;
 
 struct SetInfo {
-	Set *set;
-	string origin;
+  Set *set;
+  string origin;
 
-	SetInfo() = default;
-	SetInfo(Set *set, const string &origin)
-		: set(set), origin(origin) {}
+  SetInfo() = default;
+  SetInfo(Set *set, const string &origin) : set(set), origin(origin) {}
 };
 
 #endif

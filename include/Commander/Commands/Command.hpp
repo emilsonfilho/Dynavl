@@ -5,8 +5,8 @@
 
 #include "Commander/Contexts/CommandContext.hpp"
 
-using std::string;
 using std::cout;
+using std::string;
 
 class Command {
 protected:
@@ -20,8 +20,7 @@ public:
    * @param n Command name
    * @param d Command description
    */
-  Command(const string &n, const string &d)
-      : name(n), description(d) {}
+  Command(const string &n, const string &d) : name(n), description(d) {}
 
   /**
    * @brief Returns the command name

@@ -7,10 +7,10 @@
 #include "Exceptions/InvalidArgumentException.hpp"
 #include "Utils/Tools/Trim.hpp"
 
-using std::string;
-using std::cout;
 using std::cin;
+using std::cout;
 using std::exception;
+using std::string;
 
 /**
  * @brief Gets a valid string

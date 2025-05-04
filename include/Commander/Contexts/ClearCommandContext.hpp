@@ -5,7 +5,7 @@
 
 class ClearCommandContext : public IndexedCommandContext {
 public:
-    ClearCommandContext(ConstRepository repository, int index);
+  ClearCommandContext(ConstRepository repository, int index);
 };
 
 #endif

@@ -4,10 +4,10 @@
 #include <stdexcept>
 #include <string>
 
-using std::string;
+using std::exception;
 using std::invalid_argument;
 using std::stoi;
-using std::exception;
+using std::string;
 
 class InvalidNumberInputException : public invalid_argument {
 public:

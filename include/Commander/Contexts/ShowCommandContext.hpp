@@ -6,15 +6,15 @@
 #include "../def/ConstRepository.hpp"
 #include "Commander/Contexts/CommandContext.hpp"
 
-using std::string;
 using std::queue;
+using std::string;
 
 class ShowCommandContext : public CommandContext {
 public:
   queue<int> indexes;
   ConstRepository repository;
 
-  ShowCommandContext(ConstRepository repository, const queue<int>& indexes);
+  ShowCommandContext(ConstRepository repository, const queue<int> &indexes);
 };
 
 #endif

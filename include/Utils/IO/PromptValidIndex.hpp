@@ -1,5 +1,5 @@
 #ifndef PROMPT_VALID_INDEX_HPP
-#define PROMPT_VALID_INDEX_HPP 
+#define PROMPT_VALID_INDEX_HPP
 
 #include "../def/ConstRepository.hpp"
 #include "Utils/Tools/GetValidNumber.hpp"
@@ -8,7 +8,8 @@
 using std::string;
 
 /**
- * @brief Prompts the user with a message and retrieves a validated repository index.
+ * @brief Prompts the user with a message and retrieves a validated repository
+ * index.
  *
  * This function displays the given prompt, reads an integer from the user,
  * and ensures it falls within the valid range [0, repository.size()). It uses
@@ -18,6 +19,6 @@ using std::string;
  * @param prompt The message displayed to the user when requesting input.
  * @return int A valid index within the repository.
  */
-int promptValidIndex(ConstRepository repository, const string& prompt);
+int promptValidIndex(ConstRepository repository, const string &prompt);
 
 #endif

@@ -3,8 +3,8 @@
 
 #include <stdexcept>
 
-using std::string;
 using std::runtime_error;
+using std::string;
 
 class EmptyRepositoryException : public runtime_error {
 public:

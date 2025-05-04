@@ -3,8 +3,8 @@
 
 #include <stdexcept>
 
-using std::string;
 using std::invalid_argument;
+using std::string;
 
 class InvalidIndexStringException : public invalid_argument {
 public:

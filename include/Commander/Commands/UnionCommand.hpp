@@ -17,7 +17,7 @@ public:
   UnionCommand(const string &name, const string &description);
   /*
    * @brief UnionCommand execution function
-   * 
+   *
    * @param context Command context
    */
   void execute(CommandContext *context) const override;

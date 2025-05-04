@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 
-using StringValidator =
-    std::function<void(const std::string &)>;
+using StringValidator = std::function<void(const std::string &)>;
 
 #endif

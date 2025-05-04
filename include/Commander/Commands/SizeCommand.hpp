@@ -3,25 +3,25 @@
 
 #include <iostream>
 
-using std::string;
 using std::cout;
+using std::string;
 
 #include "Commander/Commands/Command.hpp"
 #include "Commander/Contexts/SizeCommandContext.hpp"
 
 class SizeCommand : public Command {
 public:
-	/*
-	 * @brief SizeCommand constructor
-	 */
-	SizeCommand(const string& name, const string& description);
+  /*
+   * @brief SizeCommand constructor
+   */
+  SizeCommand(const string &name, const string &description);
 
-	/*
-	 * @brief SizeCommand execution function
-	 * 
-	 * @param context Command context
-	 */
-	void execute(CommandContext *context) const override;
+  /*
+   * @brief SizeCommand execution function
+   *
+   * @param context Command context
+   */
+  void execute(CommandContext *context) const override;
 };
 
 #endif

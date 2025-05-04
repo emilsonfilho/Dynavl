@@ -5,9 +5,9 @@
 
 class ContainsCommandContext : public IndexedCommandContext {
 public:
-    int key;
+  int key;
 
-    ContainsCommandContext(ConstRepository repository, int index, int key);
+  ContainsCommandContext(ConstRepository repository, int index, int key);
 };
 
 #endif

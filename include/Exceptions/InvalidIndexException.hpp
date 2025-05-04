@@ -4,8 +4,8 @@
 
 #include <stdexcept>
 
-using std::string;
 using std::invalid_argument;
+using std::string;
 
 class InvalidIndexException : public invalid_argument {
 public:
