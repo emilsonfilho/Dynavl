@@ -20,10 +20,12 @@
 #include "Commander/Commands/ClearCommand.hpp"
 #include "Commander/Commands/ContainsCommand.hpp"
 #include "Commander/Commands/CreateCommand.hpp"
+#include "Commander/Commands/DifferenceCommand.hpp"
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
 #include "Commander/Commands/IntersectionCommand.hpp"
+#include "Commander/Commands/ListCommand.hpp"
 #include "Commander/Commands/MaximumCommand.hpp"
 #include "Commander/Commands/MinimumCommand.hpp"
 #include "Commander/Commands/PredecessorCommand.hpp"
@@ -74,6 +76,11 @@ int main() {
   UnionCommand unionCommand("union", "une dois conjuntos do sistema");
   IntersectionCommand intersectionCommand(
       "intersecao", "reune os elementos em comum de dois conjuntos do sistema");
+  DifferenceCommand differenceCommand(
+      "difference", "extrai todos os elementos exclusivos do primeiro em "
+                    "relacao a uniao de dois conjuntos no sistema");
+  ListCommand listCommand("list",
+                          "lista a origem de todos os conjuntos do sistema");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -230,6 +237,24 @@ int main() {
 
         return new IntersectionCommandContext(sets, index1, index2);
       });
+
+  invoker.registerCommand(
+      differenceCommand.getName(), &differenceCommand,
+      [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
+
+        int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+            index2 = promptValidIndex(sets, PromptIndexSecondSet);
+
+        return new DifferenceCommandContext(sets, index1, index2);
+      });
+
+  invoker.registerCommand(listCommand.getName(), &listCommand,
+                          [&sets]() -> CommandContext * {
+                            ValidateRepositoryNotEmpty(sets);
+
+                            return new ListCommandContext(sets);
+                          });
 
   while (true) {
     try {

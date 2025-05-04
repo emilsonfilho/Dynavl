@@ -107,22 +107,6 @@ bool Set::contains(int key, Node *node) const {
     return contains(key, node->right);
 }
 
-void Set::show(Node *node, string inheritance) const {
-  if (node != nullptr && (node->left != nullptr || node->right != nullptr))
-    show(node->right, inheritance + "r");
-  for (int i = 0; i < (int)inheritance.size() - 1; i++)
-    cout << (inheritance[i] != inheritance[i + 1] ? "│   " : "    ");
-  if (inheritance != "")
-    cout << (inheritance.back() == 'r' ? "┌───" : "└───");
-  if (node == nullptr) {
-    cout << "#" << endl;
-    return;
-  }
-  cout << node->key << endl;
-  if (node != nullptr && (node->left != nullptr || node->right != nullptr))
-    show(node->left, inheritance + "l");
-}
-
 Node *Set::erase(int key, Node *node) {
   if (!node)
     return nullptr;
@@ -256,7 +240,14 @@ bool Set::empty() const { return _size == 0 and !root; }
 
 int Set::size() const { return _size; }
 
-void Set::show() const { show(root, ""); }
+void Set::show() const {
+  vector<int> v = inOrder();
+
+  cout << "[ ";
+  for (int e : v)
+    cout << e << " ";
+  cout << "]\n";
+}
 
 void Set::clear() {
   clear(root);
@@ -374,6 +365,32 @@ Set *Set::intersectionSet(const Set &T) const {
   }
 
   return I;
+}
+
+Set *Set::differenceSet(const Set &T) const {
+  vector<int> v1 = this->inOrder(), v2 = T.inOrder();
+
+  int i = 0, j = 0;
+  Set *D = new Set();
+
+  while (i < v1.size() and j < v2.size()) {
+    if (v1[i] == v2[j]) {
+      i++;
+      j++;
+    } else if (v1[i] < v2[j]) {
+      D->insert(v1[i]);
+      i++;
+    } else {
+      j++;
+    }
+  }
+
+  while (i < _size) {
+    D->insert(v1[i]);
+    i++;
+  }
+
+  return D;
 }
 
 #ifdef TEST_MODE
