@@ -20,6 +20,7 @@
 #include "Commander/Commands/ClearCommand.hpp"
 #include "Commander/Commands/ContainsCommand.hpp"
 #include "Commander/Commands/CreateCommand.hpp"
+#include "Commander/Commands/DifferenceCommand.hpp"
 #include "Commander/Commands/EmptyCommand.hpp"
 #include "Commander/Commands/EraseCommand.hpp"
 #include "Commander/Commands/InsertCommand.hpp"
@@ -74,6 +75,9 @@ int main() {
   UnionCommand unionCommand("union", "une dois conjuntos do sistema");
   IntersectionCommand intersectionCommand(
       "intersecao", "reune os elementos em comum de dois conjuntos do sistema");
+  DifferenceCommand differenceCommand(
+      "difference", "extrai todos os elementos exclusivos do primeiro em "
+                    "relacao a uniao de dois conjuntos no sistema");
 
   invoker.registerCommand(
       createCommand.getName(), &createCommand, [&sets]() -> CommandContext * {
@@ -229,6 +233,17 @@ int main() {
             index2 = promptValidIndex(sets, PromptIndexSecondSet);
 
         return new IntersectionCommandContext(sets, index1, index2);
+      });
+
+  invoker.registerCommand(
+      differenceCommand.getName(), &differenceCommand,
+      [&sets]() -> CommandContext * {
+        ValidateRepositoryNotEmpty(sets);
+
+        int index1 = promptValidIndex(sets, PromptIndexFirstSet),
+            index2 = promptValidIndex(sets, PromptIndexSecondSet);
+
+        return new DifferenceCommandContext(sets, index1, index2);
       });
 
   while (true) {

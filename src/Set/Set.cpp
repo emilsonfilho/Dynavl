@@ -376,7 +376,7 @@ Set *Set::intersectionSet(const Set &T) const {
   return I;
 }
 
-Set *Set::differenceSet(const Set &set) const {
+Set *Set::differenceSet(const Set &T) const {
   vector<int> v1 = this->inOrder(), v2 = T.inOrder();
 
   int i = 0, j = 0;
@@ -387,15 +387,17 @@ Set *Set::differenceSet(const Set &set) const {
       i++;
       j++;
     } else if (v1[i] < v2[j]) {
-      D.insert(v1[i]);
+      D->insert(v1[i]);
       i++;
     } else {
       j++;
     }
   }
 
-  while (i < _size)
-    D.insert(v1[i]);
+  while (i < _size) {
+    D->insert(v1[i]);
+    i++;
+  }
 
   return D;
 }
