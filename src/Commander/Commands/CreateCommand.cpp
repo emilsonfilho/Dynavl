@@ -1,7 +1,6 @@
 #include "Commander/Commands/CreateCommand.hpp"
 
-CreateCommand::CreateCommand(const string &name,
-                                     const string &description)
+CreateCommand::CreateCommand(const string &name, const string &description)
     : Command(name, description) {}
 
 void CreateCommand::execute(CommandContext *context) const {
@@ -16,6 +15,7 @@ void CreateCommand::execute(CommandContext *context) const {
     }
 
     ctx->repository.emplace_back(set, "gerado por linha de comando");
-    cout << "Conjunto adicionado com sucesso na posição " << ctx->repository.size() - 1 << '\n';
+    cout << "Conjunto adicionado com sucesso na posição "
+         << ctx->repository.size() - 1 << '\n';
   }
 }

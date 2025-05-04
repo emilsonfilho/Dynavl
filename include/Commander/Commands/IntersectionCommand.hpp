@@ -18,7 +18,7 @@ public:
 
   /*
    * @brief IntersectionCommand execution function
-   * 
+   *
    * @param context Command context
    */
   void execute(CommandContext *context) const override;

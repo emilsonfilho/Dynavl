@@ -3,8 +3,8 @@
 
 #include <stdexcept>
 
-using std::string;
 using std::invalid_argument;
+using std::string;
 
 class InvalidArgumentException : public std::invalid_argument {
 public:

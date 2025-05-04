@@ -3,10 +3,10 @@
 
 class CommandContext {
 public:
-	/**
-	 * @brief Context destructor
-	 */
-	virtual ~CommandContext() = default;
+  /**
+   * @brief Context destructor
+   */
+  virtual ~CommandContext() = default;
 };
 
 #endif

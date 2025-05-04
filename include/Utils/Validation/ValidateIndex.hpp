@@ -7,8 +7,9 @@
 /**
  * @brief Validates whether an index is within the valid range of a repository.
  *
- * This function checks if the given index is non-negative and less than the repository size.
- * If the index is out of bounds, it throws an `InvalidIndexException`.
+ * This function checks if the given index is non-negative and less than the
+ * repository size. If the index is out of bounds, it throws an
+ * `InvalidIndexException`.
  *
  * @param index The index to validate.
  * @param repositorySize The size of the repository to validate against.
