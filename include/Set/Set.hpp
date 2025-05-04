@@ -426,6 +426,20 @@ public:
    */
   vector<int> inOrder() const;
 
+  /**
+   * @brief Computes the intersection of this set with another set.
+   *
+   * This function collects the elements of both sets in sorted order using
+   * in-order traversal, then iterates through the two sorted vectors to
+   * identify common elements. It inserts each common element into a newly
+   * allocated set and returns a pointer to it.
+   *
+   * @param T The set to intersect with the current set.
+   * @return Set* A pointer to a new set containing elements common to both
+   * sets.
+   */
+  Set *intersectionSet(const Set &T) const;
+
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
   Node *getRoot() const;

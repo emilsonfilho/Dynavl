@@ -354,6 +354,28 @@ Set *Set::unionSet(const Set &T) const {
   return U;
 }
 
+Set *Set::intersectionSet(const Set &T) const {
+  vector<int> v1 = this.inOrder(), v2 = T.inOrder();
+
+  int i = 0, j = 0;
+
+  Set *I = new Set();
+
+  while (i < _size and j < T.size()) {
+    if (v1[i] == v2[j]) {
+      I.insert(v1[i]);
+      i++;
+      j++;
+    } else if (v1[i] < v2[j]) {
+      i++;
+    } else {
+      j++;
+    }
+  }
+
+  return I;
+}
+
 #ifdef TEST_MODE
 Node *Set::getRoot() const { return root; }
 int Set::getBalanceForTest(Node *node) const { return getBalance(node); }
