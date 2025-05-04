@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 #include "Exceptions/EmptySetException.hpp"
 #include "Exceptions/NoPredecessorException.hpp"
@@ -400,7 +401,7 @@ public:
    * @param set The set to union with the current set.
    * @return Set A new set containing all unique elements from both sets.
    */
-  Set* unionSet(const Set &T) const;
+  Set *unionSet(const Set &T) const;
 
 #ifdef TEST_MODE
   // Retorna a raiz da árvore (para fins de teste)
