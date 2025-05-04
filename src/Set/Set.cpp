@@ -169,7 +169,7 @@ Node *Set::getMax(Node *node) const {
   return getMax(node->right);
 }
 
-Node* Set::search(int key, Node *node) const {
+Node *Set::search(int key, Node *node) const {
   if (!node)
     return nullptr;
 
@@ -182,35 +182,48 @@ Node* Set::search(int key, Node *node) const {
   }
 }
 
-void Set::insertSubtree(Node* T, Set& U) const {
-	if (!T) return;
+void Set::insertSubtree(Node *T, Set &U) const {
+  if (!T)
+    return;
 
-	insertSubtree(T->left, U);
+  insertSubtree(T->left, U);
 
-	U.insert(T->key);
-	
-	insertSubtree(T->right, U);
+  U.insert(T->key);
+
+  insertSubtree(T->right, U);
 }
 
-void Set::unionSet(Node* t1, Node* t2, Set& U) const {
-	if (!t1 and !t2) return;
-	
-	if (!t1) {
-		insertSubtree(t2, U);
-		return;
-	}
-	
-	if (!t2) {
-		insertSubtree(t1, U);
-		return;
-	}
+void Set::unionSet(Node *t1, Node *t2, Set &U) const {
+  if (!t1 and !t2)
+    return;
 
-	unionSet(t1->left, t2->left, U);
+  if (!t1) {
+    insertSubtree(t2, U);
+    return;
+  }
 
-	U.insert(t1->key);
-	U.insert(t2->key);
+  if (!t2) {
+    insertSubtree(t1, U);
+    return;
+  }
 
-	unionSet(t1->right, t2->right, U);
+  unionSet(t1->left, t2->left, U);
+
+  U.insert(t1->key);
+  U.insert(t2->key);
+
+  unionSet(t1->right, t2->right, U);
+}
+
+void Set::inOrder(Node *node, vector<int> &v) const {
+  if (!node)
+    return;
+
+  inOrder(node->left, v);
+
+  v.push_back(node->key);
+
+  inOrder(node->right, v);
 }
 
 /**
@@ -297,39 +310,48 @@ int Set::predecessor(int key) const {
 }
 
 int Set::successor(int key) const {
-	if (empty())
-		throw EmptySetException(EmptySetMessage());
+  if (empty())
+    throw EmptySetException(EmptySetMessage());
 
-	Node* node = search(key, root);
+  Node *node = search(key, root);
 
-	if (!node)
-		throw ValueNotFoundException(ValueNotFoundMessage(key));
+  if (!node)
+    throw ValueNotFoundException(ValueNotFoundMessage(key));
 
-	if (node->right)
-		return getMin(node->right)->key;
+  if (node->right)
+    return getMin(node->right)->key;
 
-	Node* aux = root, *successor = nullptr;
-	while (aux) {
-		if (node->key < aux->key) {
-			successor = aux;
-			aux = aux->left;
-		} else if (node->key > aux->key) {
-			aux = aux->right;
-		} else {
-			break;
-		}
-	}
+  Node *aux = root, *successor = nullptr;
+  while (aux) {
+    if (node->key < aux->key) {
+      successor = aux;
+      aux = aux->left;
+    } else if (node->key > aux->key) {
+      aux = aux->right;
+    } else {
+      break;
+    }
+  }
 
-	if (!successor)
-		throw NoSuccessorException(NoSuccessorMessage(key));
+  if (!successor)
+    throw NoSuccessorException(NoSuccessorMessage(key));
 
-	return successor->key;	
+  return successor->key;
 }
 
-Set* Set::unionSet(const Set& T) const {
-	Set *U = new Set();
-	unionSet(root, T.root, *U);
-	return U;
+vector<int> inOrder() const {
+  vector<int> v;
+  v.reserve(_size);
+
+  inOrder(root, v);
+
+  return v;
+}
+
+Set *Set::unionSet(const Set &T) const {
+  Set *U = new Set();
+  unionSet(root, T.root, *U);
+  return U;
 }
 
 #ifdef TEST_MODE
