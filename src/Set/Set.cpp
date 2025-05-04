@@ -219,11 +219,11 @@ void inOrder(Node *node, vector<int> &v) const {
   if (!node)
     return;
 
-  inOrder(node->left, v, size);
+  inOrder(node->left, v);
 
   v.push_back(node->key);
 
-  inOrder(node->right, v, size);
+  inOrder(node->right, v);
 }
 
 /**
