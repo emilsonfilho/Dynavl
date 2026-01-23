@@ -49,7 +49,7 @@ O sistema permite gerenciar múltiplos conjuntos simultaneamente através de com
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/emilsonfilho/dynavl.git](https://github.com/emilsonfilho/dynavl.git)
+   git clone https://github.com/emilsonfilho/dynavl.git
    cd dynavl
    ```
 2. **Gere os arquivos de build com o CMake**
